@@ -1,50 +1,121 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container container-wrap">
+      <a class="navbar-brand" href="#">
+        <img class="logo" src="@/assets/logo.png" alt="logo">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+      <div class="collapse navbar-collapse ul-wrap" id="navbarNav">
+        <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link class="nav-link" to="/">首頁</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+            <router-link class="nav-link" to="/products">商品列表</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <router-link class="nav-link" to="/">關於我們</router-link>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+
+        <ul class="navbar-nav navbar-cart-md">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/"><i class="bi bi-bookmark"></i></router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/"><i class="bi bi-cart"></i></router-link>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav navbar-cart-mobile">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/"><i class="bi bi-bookmark"></i> 收藏項目</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/"><i class="bi bi-cart"></i> 購物車</router-link>
+          </li>
+        </ul>
+
       </div>
+
     </div>
   </nav>
 </template>
+
 <script>
+import 'bootstrap/js/dist/collapse'
 export default {
 
 }
 </script>
-<style lang="sass">
 
-</style>
+<style lang="scss" scoped>
+
+$aColor: white;
+$aColorHover: black;
+$aBGCHover: white;
+
+* {
+  // background-color: rgba(0, 100, 0, 0.05);
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.navbar {
+  color: $aColor;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.logo {
+  width: 200px;
+}
+
+.ul-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-nav {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-nav .nav-item {
+  padding: 5px;
+  margin: 0;
+  border-radius: 5px;
+  a {
+    color: $aColor;
+  }
+}
+
+.navbar-nav .nav-item:hover {
+  background-color: $aBGCHover;
+  a {
+    color: $aColorHover;
+  }
+}
+.navbar-cart-mobile {
+  display: none;
+}
+
+@media(max-width: 767px) {
+  .ul-wrap {
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  .navbar-cart-md {
+    display: none;
+  }
+
+  .navbar-cart-mobile {
+    display: flex;
+  }
+}</style>
