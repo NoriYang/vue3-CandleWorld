@@ -59,12 +59,9 @@ $aColor: white;
 $aColorHover: black;
 $aBGCHover: white;
 
-* {
+.navbar {
   font-weight: 900;
   font-size: 18px;
-}
-
-.navbar {
   color: $aColor;
   padding-top: 0;
   padding-bottom: 0;
