@@ -16,10 +16,10 @@
             <router-link class="nav-link" to="/">首頁</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/products">商品列表</router-link>
+            <router-link class="nav-link" to="/">關於我們</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">關於我們</router-link>
+            <router-link class="nav-link" to="/products">商品列表</router-link>
           </li>
         </ul>
 
@@ -55,13 +55,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 $aColor: white;
 $aColorHover: black;
 $aBGCHover: white;
 
 * {
-  // background-color: rgba(0, 100, 0, 0.05);
   font-weight: 900;
   font-size: 18px;
 }
@@ -70,6 +68,9 @@ $aBGCHover: white;
   color: $aColor;
   padding-top: 0;
   padding-bottom: 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .logo {
@@ -90,6 +91,7 @@ $aBGCHover: white;
   padding: 5px;
   margin: 0;
   border-radius: 5px;
+
   a {
     color: $aColor;
   }
@@ -97,10 +99,12 @@ $aBGCHover: white;
 
 .navbar-nav .nav-item:hover {
   background-color: $aBGCHover;
+
   a {
     color: $aColorHover;
   }
 }
+
 .navbar-cart-mobile {
   display: none;
 }
@@ -118,4 +122,5 @@ $aBGCHover: white;
   .navbar-cart-mobile {
     display: flex;
   }
-}</style>
+}
+</style>

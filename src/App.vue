@@ -1,14 +1,7 @@
 <template>
   <div class="main">
-    <div class="navbar-wrap">
-      <Navbar></Navbar>
-    </div>
-    <div class="content-wrap">
-      <router-view></router-view>
-    </div>
-    <!-- <div class="footer">
-      footer
-    </div> -->
+    <Navbar></Navbar>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -23,9 +16,10 @@ export default {
 <style lang="scss">
 @import "./assets/all";
 .navbar-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  position: relative;
   width: 100%;
   padding: 0;
   z-index: 1;
