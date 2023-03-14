@@ -1,8 +1,5 @@
 <template>
   <div class="products">
-    <div class="products-banner">
-      <h2 class="banner-title">全部商品</h2>
-    </div>
     <div class="container">
       <div class="row main">
         <nav class="sidebar col-md-3">

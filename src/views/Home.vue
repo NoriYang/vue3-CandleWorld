@@ -66,7 +66,6 @@ export default {
   width: 50%;
 
   .imp-text {
-
     font-size: 50px;
   }
 
@@ -99,7 +98,7 @@ export default {
     }
 
     .arrow-move {
-      padding-top: -5px;
+      padding-top: -3px;
       position: absolute;
       animation: arrowMove 0.5s ease-in-out infinite alternate;
     }

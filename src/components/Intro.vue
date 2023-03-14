@@ -12,7 +12,9 @@
           <div class="col-md-6">
             <div class="card-body">
               <div>
-                <h5 class="card-title">{{ card.title }}</h5>
+                <h5 class="card-title">
+                  {{ card.title }}
+                </h5>
                 <p class="card-text">
                   {{ card.text }}
                 </p>
