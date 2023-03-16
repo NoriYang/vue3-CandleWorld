@@ -2,6 +2,7 @@
   <div class="products">
     <div class="container">
       <div class="row main">
+
         <nav class="sidebar col-md-3">
           <ul class="sidebar-lists">
             <li class="sidebar-lists-item">全部商品</li>
@@ -16,8 +17,29 @@
             <li class="sidebar-lists-item">香氛蠟燭</li>
           </ul>
         </nav>
+
         <div class="products-items col-md-9">
-          products-items
+          <div class="container">
+            <div class="row">
+              <div class="item-card col-md-4">
+                <div class="card">
+                  <img src="" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                      card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item-card col-md-4">
+                item-card
+              </div>
+              <div class="item-card col-md-4">
+                item-card
+              </div>
+            </div>
+          </div>
           <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
       </div>
@@ -33,37 +55,24 @@ export default {
 * {
   background-color: rgba(0, 100, 0, 0.05);
 }
-// .products {
-//   height: 100dvh;
-// }
-.products-banner {
-  height: 250px;
-  width: 100%;
-  background-image: url(https://images.unsplash.com/photo-1513538209087-f223a5718ede?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80);
-  background-size: 100%;
-  background-position: center 75%;
-  background-repeat: no-repeat;
-  position: relative;
 
-  .banner-title {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    color: white;
-    font-size: 36px;
-    font-weight: bolder;
-    text-shadow: 0 3px 10px #020202;
-    letter-spacing: 3px;
-  }
+.products {
+  background-color: #fff;
+  padding-top: 25px;
 }
-.main {
-  position: relative;
-}
-.sidebar-lists {
+
+.sidebar {
+  height: 100%;
+  background-color: orange;
   position: sticky;
-  top: 63px;
+  top: 64px;
 }
+
 .products-items {
+
+  .item-card {
+    background-color: gray;
+    min-height: 400px;
+  }
 }
 </style>

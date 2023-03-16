@@ -21,6 +21,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/products">商品列表</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/login">登入</router-link>
+          </li>
         </ul>
 
         <ul class="navbar-nav navbar-cart-md">

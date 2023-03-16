@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Navbar></Navbar>
     <div class="banner">
       <div class="banner-content">
         <p class="banner-content-pc">
@@ -24,10 +25,11 @@
 </template>
 
 <script>
+import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 import Inrto from '@/components/Intro.vue'
 export default {
-  components: { Footer, Inrto }
+  components: { Footer, Inrto, Navbar }
 }
 </script>
 
