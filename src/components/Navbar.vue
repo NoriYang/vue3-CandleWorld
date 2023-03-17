@@ -19,10 +19,7 @@
             <router-link class="nav-link" to="/">關於我們</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="dashboard/products">商品列表</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/login">登入</router-link>
+            <router-link class="nav-link" to="/products">商品列表</router-link>
           </li>
         </ul>
 

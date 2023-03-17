@@ -1,5 +1,6 @@
 <template lang="">
   <div>
+    <loading :active="isLoading"></loading>
     <div class="container mt-5">
       <form class="row justify-content-center" @submit.prevent="signIn">
         <div class="col-md-6">
@@ -54,8 +55,8 @@ export default {
       this.isLoading = true
       this.$http.post(api, this.user)
         .then((res) => {
+          this.isLoading = false
           if (res.data.success) {
-            this.isLoading = false
             const { token, expired } = res.data
             document.cookie = `hexToken=${token};expires=${new Date(expired)}`
             this.$router.push('/dashboard/products')
