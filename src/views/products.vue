@@ -1,78 +1,53 @@
 <template>
-  <div class="products">
-    <div class="container">
-      <div class="row main">
-
-        <nav class="sidebar col-md-3">
-          <ul class="sidebar-lists">
-            <li class="sidebar-lists-item">全部商品</li>
-            <li class="sidebar-lists-item">熱門商品</li>
-            <li class="sidebar-lists-item">組合包</li>
-            <li class="sidebar-lists-item">器具</li>
-            <li class="sidebar-lists-item">香氛蠟燭</li>
-            <li class="sidebar-lists-item">全部商品</li>
-            <li class="sidebar-lists-item">熱門商品</li>
-            <li class="sidebar-lists-item">組合包</li>
-            <li class="sidebar-lists-item">器具</li>
-            <li class="sidebar-lists-item">香氛蠟燭</li>
-          </ul>
-        </nav>
-
-        <div class="products-items col-md-9">
-          <div class="container">
-            <div class="row">
-              <div class="item-card col-md-4">
-                <div class="card">
-                  <img src="" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                      card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="item-card col-md-4">
-                item-card
-              </div>
-              <div class="item-card col-md-4">
-                item-card
-              </div>
+  <div>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th width="120">分類</th>
+          <th>產品名稱</th>
+          <th width="120">原價</th>
+          <th width="120">售價</th>
+          <th width="100">是否啟用</th>
+          <th width="200">編輯</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>分類</td>
+          <td>標題</td>
+          <td class="text-right">
+            200
+          </td>
+          <td class="text-right">
+            100
+          </td>
+          <td>
+            <span class="text-success">啟用</span>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-outline-primary btn-sm">編輯</button>
+              <button class="btn btn-outline-danger btn-sm">刪除</button>
             </div>
-          </div>
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        </div>
-      </div>
-    </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
 export default {
+  data () {
+    return {
+      products: [],
+      pagination: {}
+    }
+  },
+  methods: {
+    getPrdocuts () {
 
-}
-</script>
-<style lang="scss" scoped>
-* {
-  background-color: rgba(0, 100, 0, 0.05);
-}
-
-.products {
-  background-color: #fff;
-  padding-top: 25px;
-}
-
-.sidebar {
-  height: 100%;
-  background-color: orange;
-  position: sticky;
-  top: 64px;
-}
-
-.products-items {
-
-  .item-card {
-    background-color: gray;
-    min-height: 400px;
+    }
   }
 }
-</style>
+</script>
+<style lang="scss"></style>

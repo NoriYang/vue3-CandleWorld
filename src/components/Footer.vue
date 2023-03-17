@@ -33,9 +33,9 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <router-link to="/dashboard/products">
                 <i class="bi bi-folder"></i>
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>

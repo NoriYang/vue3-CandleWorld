@@ -1,10 +1,16 @@
 <template>
   <div>
-    Dasboard
+    <Dashboard-Navbar></Dashboard-Navbar>
+    <div class="container-fluid">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
+
 <script>
+import DashboardNavbar from '@/components/DashboardNavbar.vue'
 export default {
+  components: { DashboardNavbar },
   created () {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
     this.$http.defaults.headers.common.Authorization = `${token}`

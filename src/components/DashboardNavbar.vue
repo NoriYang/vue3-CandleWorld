@@ -15,34 +15,15 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/">首頁</router-link>
           </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">關於我們</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="dashboard/products">商品列表</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/login">登入</router-link>
-          </li>
         </ul>
 
         <ul class="navbar-nav navbar-cart-md">
           <li class="nav-item">
-            <router-link class="nav-link" to="/"><i class="bi bi-bookmark"></i></router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/"><i class="bi bi-cart"></i></router-link>
+            <a class="nav-link" href="#" @click.prevent="logout">
+              登出
+            </a>
           </li>
         </ul>
-
-        <!-- <ul class="navbar-nav navbar-cart-mobile">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/"><i class="bi bi-bookmark"></i> 收藏項目</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/"><i class="bi bi-cart"></i> 購物車</router-link>
-          </li>
-        </ul> -->
       </div>
 
     </div>
@@ -52,7 +33,18 @@
 <script>
 import 'bootstrap/js/dist/collapse'
 export default {
-
+  methods: {
+    logout () {
+      console.log('logout')
+      const api = `${process.env.VUE_APP_API}logout`
+      this.$http.post(api)
+        .then(res => {
+          if (res.data.success) {
+            this.$router.push('/login')
+          }
+        })
+    }
+  }
 }
 </script>
 
@@ -71,9 +63,11 @@ $aBGCHover: white;
   top: 0;
   z-index: 999;
 }
+
 .mr-auto {
   margin-right: auto;
 }
+
 .logo {
   width: 200px;
 }
@@ -104,23 +98,4 @@ $aBGCHover: white;
     color: $aColorHover;
   }
 }
-
-// .navbar-cart-mobile {
-//   display: none;
-// }
-
-// @media(max-width: 767px) {
-//   .ul-wrap {
-//     display: block;
-//     padding-bottom: 5px;
-//   }
-
-//   .navbar-cart-md {
-//     display: none;
-//   }
-
-//   .navbar-cart-mobile {
-//     display: flex;
-//   }
-// }
 </style>
