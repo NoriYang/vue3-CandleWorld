@@ -15,12 +15,12 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: () => import('../views/Dashboard.vue'),
+    component: () => import('../views/Dashboard/Dashboard.vue'),
     children: [
       {
         path: 'products',
         name: 'Products',
-        component: () => import('../views/Products.vue')
+        component: () => import('../views/Dashboard/Products.vue')
       }
     ]
   }

@@ -4,13 +4,21 @@
     <div class="container-fluid">
       <router-view></router-view>
     </div>
+    <ToastMessage></ToastMessage>
   </div>
 </template>
 
 <script>
-import DashboardNavbar from '@/components/DashboardNavbar.vue'
+import DashboardNavbar from '@/components/Dashboard/DashboardNavbar.vue'
+import ToastMessage from '@/components/Dashboard/ToastMessages.vue'
+import emitter from '@/methods/emitter'
 export default {
-  components: { DashboardNavbar },
+  components: { DashboardNavbar, ToastMessage },
+  provide () {
+    return {
+      emitter
+    }
+  },
   created () {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
     this.$http.defaults.headers.common.Authorization = `${token}`

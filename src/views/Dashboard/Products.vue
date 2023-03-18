@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <loading :active="isLoading"></loading>
-    <div class="text-end">
-      <button class="btn btn-primary" type="button" @click="openModal(true)">增加一個產品</button>
+    <div class="text-end mt-3">
+      <button class="btn btn-primary" type="button" @click="openModal(true)">新增產品</button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -38,6 +38,7 @@
         </tr>
       </tbody>
     </table>
+    <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
     <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
     <DelModal :item="tempProduct" ref="delModal" @del-item="delProduct" />
   </div>
@@ -45,11 +46,12 @@
 
 <script>
 
-import ProductModal from '../components/ProductModal.vue'
-import DelModal from '../components/DelModal.vue'
+import ProductModal from '@/components/Dashboard/ProductModal.vue'
+import DelModal from '@/components/Dashboard/DelModal.vue'
+import Pagination from '@/components/Content/Pagination.vue'
 
 export default {
-  components: { ProductModal, DelModal },
+  components: { ProductModal, DelModal, Pagination },
   data () {
     return {
       products: [],
@@ -59,6 +61,7 @@ export default {
       isLoading: false
     }
   },
+  inject: ['emitter'],
   methods: {
     openModal (isNew, item) {
       if (isNew) {
@@ -75,13 +78,15 @@ export default {
       const delComponent = this.$refs.delModal
       delComponent.showModal()
     },
-    getPrdocuts () {
+
+    getProducts (page = 1) {
       this.isLoading = true
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products`
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`
       this.$http.get(api)
         .then((res) => {
           this.isLoading = false
           if (res.data.success) {
+            this.pagination = res.data.pagination
             this.products = res.data.products
             this.pagination = res.data.pagination
           }
@@ -102,8 +107,21 @@ export default {
       this.$http[httpMethod](api, { data: this.tempProduct })
         .then((res) => {
           productComponent.hideModal()
+          if (res.data.success) {
+            this.getProducts()
+            console.log('更新成功')
+            this.emitter.emit('push-message', {
+              style: 'success',
+              title: '更新成功'
+            })
+          } else {
+            this.emitter.emit('push-message', {
+              style: 'danger',
+              title: '更新失敗',
+              content: res.data.message.join('、')
+            })
+          }
           this.isLoading = false
-          this.getPrdocuts()
         })
     },
     delProduct () {
@@ -114,12 +132,12 @@ export default {
           this.isLoading = false
           const delComponent = this.$refs.delModal
           delComponent.hideModal()
-          this.getPrdocuts()
+          this.getProducts()
         })
     }
   },
   created () {
-    this.getPrdocuts()
+    this.getProducts()
   }
 }
 </script>
