@@ -54,6 +54,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data () {
@@ -130,11 +131,13 @@ export default {
       box-shadow: -2px 3px 5px rgba(0, 0, 0, 0.15);
       cursor: pointer;
       position: relative;
+
       &.active {
         border-left: 5px solid rgba(0, 0, 0, 0.7);
       }
-      &:hover{
-        &::after{
+
+      &:hover {
+        &::after {
           content: '';
           position: absolute;
           bottom: 0;
@@ -145,10 +148,12 @@ export default {
         }
       }
     }
+
     @keyframes sidebarListHover {
       0% {
         width: 0%;
       }
+
       100% {
         width: 100%;
       }
@@ -189,12 +194,14 @@ export default {
     background-position: center;
     position: relative;
     cursor: pointer;
+
     .enter-item {
       position: absolute;
       background-color: rgba(255, 255, 255, 0.7);
       width: 100%;
       height: 100%;
       opacity: 0;
+
       i {
         position: absolute;
         top: 50%;
@@ -206,6 +213,7 @@ export default {
 
     .enter-item:hover {
       animation: 0.5s enterItem forwards ease-in-out;
+
       i {
         animation: 0.5s enterItemIcon forwards ease-in-out;
       }

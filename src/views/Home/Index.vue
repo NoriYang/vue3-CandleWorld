@@ -19,17 +19,14 @@
       </div>
     </div>
     <Inrto></Inrto>
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
 
-import Footer from '@/components/Home/Footer.vue'
 import Inrto from '@/components/Home/Intro.vue'
-
 export default {
-  components: { Footer, Inrto }
+  components: { Inrto }
 }
 </script>
 
