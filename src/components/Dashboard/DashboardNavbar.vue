@@ -13,7 +13,7 @@
       <div class="collapse navbar-collapse ul-wrap" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <router-link class="nav-link" to="/">首頁</router-link>
+            <router-link class="nav-link" to="/index">首頁</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/dashboard/products">商品列表</router-link>
