@@ -9,12 +9,15 @@ import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
 
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
-import { currency } from '@/methods/filters'
+import { currency, date } from '@/methods/filters'
+import $httpMessageState from '@/methods/pushMessageState'
 
 const app = createApp(App)
 app.config.globalProperties.$filters = {
-  currency
+  currency,
+  date
 }
+app.config.globalProperties.$httpMessageState = $httpMessageState
 app.component('Loading', Loading)
 app.use(router)
 app.use(VueAxios, axios)
