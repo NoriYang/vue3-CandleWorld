@@ -7,6 +7,8 @@ import router from './router'
 import Loading from 'vue3-loading-overlay'
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
 
+import HomeLoading from '@/components/Content/HomeLoading.vue'
+
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import { currency, date } from '@/methods/filters'
@@ -19,6 +21,7 @@ app.config.globalProperties.$filters = {
 }
 app.config.globalProperties.$httpMessageState = $httpMessageState
 app.component('Loading', Loading)
+app.component('HomeLoading', HomeLoading)
 app.use(router)
 app.use(VueAxios, axios)
 app.mount('#app')

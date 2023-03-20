@@ -49,10 +49,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-* {
-  // border: 1px solid red;
-}
-
 .main-footer {
   margin-top: 50px;
   width: 100%;

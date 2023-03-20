@@ -1,5 +1,5 @@
 <template>
-  <div id='loading-page'>
+  <div id='loading-page' v-if="isLoading">
     <div id='loading'>
       <div id='loading-text'>
         <div class='text'>L</div>
@@ -18,6 +18,12 @@
 </template>
 <script>
 export default {
+  props: {
+    isLoading: {
+      type: Boolean,
+      default: true
+    }
+  },
   data () {
     return {
       progressBar: {
@@ -50,7 +56,7 @@ export default {
   height: 100%;
   width: 100%;
   z-index: 999;
-  background-color: rgba(255,255,255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <Navbar></Navbar>
-    <div class="home-main">
-      <router-view></router-view>
-    </div>
+    <router-view class="main"></router-view>
     <Footer></Footer>
   </div>
 </template>
@@ -17,7 +15,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home-main {
-  min-height: 100vh;
+.home {
+  height: 100%;
 }
+.main {
+  background-color: red;
+}
+// .home-main {
+//   min-height: 100%;
+// }
 </style>

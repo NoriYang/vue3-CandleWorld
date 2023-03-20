@@ -1,9 +1,9 @@
 <template>
   <div class="products">
-    <!-- <loading :active="isLoading"></loading> -->
+    <HomeLoading :isLoading="isLoading"></HomeLoading>
     <div class="container-xl">
       <div class="row main">
-        <nav class="sidebar col-md-3 col-lg-2">
+        <nav class="sidebar col-md-3 col-lg-2" v-if="!isLoading">
 
           <ul class="sidebar-lists">
             <li class="sidebar-lists-item" :class="{ 'active': sidebarTarget == '全部商品' }" @click="chageSidebar('全部商品')">
@@ -21,7 +21,7 @@
               <div class="card col-sm-6 col-md-6 col-lg-3" v-for="product of productsFilter" :key="product.id">
                 <div class="card-item">
                   <div class="card-item-img" :style="{ backgroundImage: `url(${product.imageUrl})` }">
-                    <div class="enter-item">
+                    <div class="enter-item" @click="getProduct(product.id)">
                       <i class="bi bi-hand-index-thumb-fill"></i>
                     </div>
                   </div>
@@ -48,8 +48,8 @@
               </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
@@ -62,7 +62,8 @@ export default {
       sidebarTarget: '全部商品',
       products: [],
       sidebarList: [],
-      pagination: {}
+      pagination: {},
+      isLoading: false
     }
   },
   computed: {
@@ -75,10 +76,10 @@ export default {
   methods: {
     getProducts (page = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
-      // this.isLoading = true
+      this.isLoading = true
       this.$http.get(api)
         .then(res => {
-          // this.isLoading = false
+          this.isLoading = false
           if (res.data.success) {
             console.log(res.data)
             this.products = res.data.products
@@ -87,12 +88,17 @@ export default {
           }
         })
     },
+    getProduct (id) {
+      console.log(id)
+      this.$router.push('/home/product/' + id)
+    },
     getSidebar () {
       this.products.forEach(item => {
         this.sidebarList.push(item.category)
       })
       this.sidebarList = [...new Set(this.sidebarList)]
     },
+    // }
     chageSidebar (target) {
       this.sidebarTarget = target
     }
@@ -103,10 +109,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-* {
-  // background-color: rgba(0, 100, 0, 0.05);
-  // border: 1px solid #000;
-}
+// * {
+// background-color: rgba(0, 100, 0, 0.05);
+// border: 1px solid #000;
 
 .sidebar {
   margin-top: 20px;
@@ -285,4 +290,5 @@ export default {
   .sidebar {
     position: static;
   }
-}</style>
+}
+</style>
