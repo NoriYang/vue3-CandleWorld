@@ -19,7 +19,7 @@ export default {
   height: 100%;
 }
 .main {
-  background-color: red;
+  min-height: 80dvh;
 }
 // .home-main {
 //   min-height: 100%;

@@ -23,12 +23,13 @@
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/helpers/main.scss";
 .banner {
   width: 100%;
   height: 100dvh;
   text-align: center;
   position: relative;
-  background-color: #020202;
+  background-color: $main-bgc;
   background-image: url(https://images.unsplash.com/photo-1608181831688-b2a476cb100c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80);
   background-repeat: no-repeat;
   background-size: cover;
@@ -53,7 +54,7 @@
   }
 
   p {
-    color: black;
+    color: $main-font-color;
     font-weight: 900;
     font-size: 36px;
     letter-spacing: 1px;
@@ -71,7 +72,7 @@
     a {
       position: relative;
       text-decoration: none;
-      color: black;
+      color: $main-font-color;
       font-size: 20px;
       font-weight: 600;
     }
@@ -140,11 +141,11 @@
 
 @keyframes aChangeColor {
   0% {
-    color: black
+    color: $main-font-color
   }
 
   100% {
-    color: #ff7f00;
+    color: $second-bgc;
   }
 }
 </style>

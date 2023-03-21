@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img class="logo" src="@/assets/logo.png" alt="logo">
@@ -54,6 +54,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/helpers/main.scss";
+
 $aColor: white;
 $aColorHover: black;
 $aBGCHover: white;
@@ -61,9 +63,10 @@ $aBGCHover: white;
 .navbar {
   font-weight: 900;
   font-size: 18px;
-  color: $aColor;
+  color: $main-font-color;
   padding-top: 0;
   padding-bottom: 0;
+  background-color: $second-bgc;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -87,37 +90,18 @@ $aBGCHover: white;
 .navbar-nav .nav-item {
   padding: 5px;
   margin: 0;
-  border-radius: 5px;
-
+  border-radius: 2px;
+  border: none;
   a {
-    color: $aColor;
+    color: $main-bgc;
   }
 }
 
 .navbar-nav .nav-item:hover {
-  background-color: $aBGCHover;
-
+  background-color: $main-bgc;
+  border: none;
   a {
-    color: $aColorHover;
+    color: $main-font-color;
   }
 }
-
-// .navbar-cart-mobile {
-//   display: none;
-// }
-
-// @media(max-width: 767px) {
-//   .ul-wrap {
-//     display: block;
-//     padding-bottom: 5px;
-//   }
-
-//   .navbar-cart-md {
-//     display: none;
-//   }
-
-//   .navbar-cart-mobile {
-//     display: flex;
-//   }
-// }
 </style>

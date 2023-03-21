@@ -96,6 +96,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/helpers/main.scss";
 .show-animate {
   animation: bottomShow 1s ease-in-out forwards;
 }
@@ -114,7 +115,7 @@ export default {
 
 .intro-main {
   margin-top: 50px;
-
+  color: $main-font-color;
   .intro-title {
     margin: 0 auto;
     text-align: center;
@@ -131,7 +132,7 @@ export default {
   .card {
     min-height: 250px;
     border: none;
-
+    background-color: inherit;
     img {
       width: 100%;
       box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.09);

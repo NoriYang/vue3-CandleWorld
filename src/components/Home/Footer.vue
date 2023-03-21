@@ -49,11 +49,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/helpers/main.scss";
 .main-footer {
   margin-top: 50px;
   width: 100%;
-  background-color: #343a40;
-  color: white;
+  background-color: $second-bgc;
+  color: $main-bgc;
 }
 
 .copyright-text {
@@ -68,16 +69,14 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 5px;
-  color: white;
+  color: $main-bgc;
   text-decoration: none;
-
   li {
     padding: 5px;
     font-size: 25px;
     margin-left: 5px;
-
     a {
-      color: white;
+      color: $main-bgc;
     }
   }
 }</style>

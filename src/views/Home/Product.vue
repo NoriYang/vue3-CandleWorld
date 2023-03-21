@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <div class="container">
-      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <nav class="product-breadcrumb" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <router-link to="/">首頁</router-link>
@@ -14,34 +14,52 @@
       </nav>
 
       <div class="row product-main">
+
         <div class="col-12 col-md-6">
           <div class="product-img" :style="{ backgroundImage: `url(${product.imageUrl})` }">
           </div>
         </div>
-        <div class="col-12 col-md-6">
-          <div>{{ product.category }}</div>
-          <div>{{ product.title }}</div>
-          <div>
+
+        <div class="col-12 col-md-6 product-intro">
+
+          <div class="product-category">
+            {{ product.category }}
+          </div>
+          <div class="product-title">
+            {{ product.title }}
+          </div>
+
+          <div class="product-des">
+            <h2>產品規格</h2>
+            {{ product.description }}
+          </div>
+          <div class="product-content">
+            <h2>產品說明</h2>
+            {{ product.content }}
+          </div>
+          <div class="product-price">
             {{ product.price }}
             {{ product.origin_price }}
           </div>
           <div>
-            {{ product.description }}
+            <span>數量：</span>
+            <button class="btn btn-dark">
+              <i class="bi bi-plus"></i>
+            </button>
+            1
+            {{ product.unit }}
+            <button class="btn btn-dark">
+              <i class="bi bi-dash"></i>
+            </button>
           </div>
-          <div>
-            {{ product.content }}
+          <div class="product-intro-button">
+            <button class="btn btn-outline-secondary btn-favorite ">加入至最愛</button>
+            <button class="btn btn-dark">加入購物車</button>
           </div>
-          <div>
-            數量：1組
-          </div>
-          <div>
-            <button>加入最愛</button>
-            <button>加入購物車</button>
-          </div>
+
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -80,7 +98,51 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  }
+
+  .product-intro {
+    display: flex;
+    flex-direction: column;
+
+    .product-category {
+      font-size: 24px;
+    }
+
+    .product-title,
+    .product-price {
+      font-size: 30px;
+    }
+
+    .product-des,
+    .product-content {
+      font-size: 16px;
+    }
+
+    .product-intro-button {
+      flex-basis: auto;
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      button {
+        height: 60px;
+        display: inline-block;
+        flex-grow: 1;
+        letter-spacing: 3px;
+        font-weight: 900;
+      }
+      button:nth-child(1){
+        margin-right: 30px;
+      }
+      .btn-favorite {
+        border: 3px solid rgba(0,0,0,0.5);
+      }
+      .btn-add-cart {
+        border: 1px solid #000;
+      }
+    }
   }
 }
 
@@ -99,5 +161,4 @@ export default {
       background-size: 80%;
     }
   }
-}
-</style>
+}</style>
