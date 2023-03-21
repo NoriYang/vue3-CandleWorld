@@ -32,6 +32,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/helpers/main.scss";
 .sidebar {
   margin-top: 20px;
   height: 100%;
@@ -42,7 +43,7 @@ export default {
     list-style: none;
     padding: 0;
     margin: 0;
-
+    color: $main-font-color;
     .sidebar-lists-item {
       letter-spacing: 5px;
       font-size: 20px;
@@ -51,13 +52,12 @@ export default {
       margin-bottom: 5px;
       padding: 5px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-      border-left: 2px solid rgba(0, 0, 0, 0.2);
       box-shadow: -2px 3px 5px rgba(0, 0, 0, 0.15);
       cursor: pointer;
       position: relative;
-
+      border-radius: 2px 0 0 5px;
       &.active {
-        border-left: 5px solid rgba(0, 0, 0, 0.7);
+        border-left: 5px solid $second-bgc;
       }
 
       &:hover {
@@ -67,7 +67,7 @@ export default {
           bottom: 0;
           left: 0;
           width: 100%;
-          border-bottom: 4px solid rgba(0, 0, 0, 0.7);
+          border-bottom: 5px solid $second-bgc;
           animation: 0.3s sidebarListHover forwards ease-in-out;
         }
       }

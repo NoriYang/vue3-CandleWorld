@@ -18,10 +18,10 @@
                   <span class="price">${{ $filters.currency(product.price) }}</span>
                 </div>
                 <div class="button-lists">
-                  <button class="btn btn-outline-dark">
-                    <i class="bi bi-star"></i>
+                  <button class="btn">
+                    <i class="bi bi-suit-heart"></i>
                   </button>
-                  <button class="btn btn-outline-dark">
+                  <button class="btn">
                     <i class="bi bi-cart3"></i>
                   </button>
                 </div>
@@ -57,6 +57,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/helpers/main.scss";
+
 .products-items {
   padding-top: 0px;
   margin-top: 0px;
@@ -66,24 +68,15 @@ export default {
 .cart-item {
   border: none;
   border-radius: 0px;
+  background-color: $main-bgc;
 }
 
 .card-item {
   border: none;
   margin-bottom: 15px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-
-  .card-title {
-    font-size: 18px;
-    text-align: center;
-    font-weight: 900;
-  }
-
-  .card-title:nth-child(2) {
-    font-size: 16px;
-    font-weight: 900;
-  }
-
+  color: $main-font-color;
+  border-radius: 0 0 5px 5px;
   .card-item-img {
     height: 200px;
     background-size: cover;
@@ -99,6 +92,7 @@ export default {
       opacity: 0;
 
       i {
+        color: $second-bgc;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -136,6 +130,21 @@ export default {
     }
   }
 
+  .card-title {
+    font-size: 18px;
+    text-align: center;
+    font-weight: 900;
+  }
+
+  .card-title:nth-child(1) {
+    color: $second-bgc;
+  }
+
+  .card-title:nth-child(2) {
+    font-size: 16px;
+    font-weight: 900;
+  }
+
   .card-body {
     padding-left: 10px;
     padding-right: 10px;
@@ -168,12 +177,28 @@ export default {
     .button-lists {
       button {
         margin-left: 5px;
+        color: $main-font-color;
       }
 
       i {
-        font-size: 18px;
+        font-size: 16px;
       }
+
+      button:hover {}
+
+      button:nth-child(1) {
+        color: $second-bgc;
+        border: 1px solid $second-bgc;
+      }
+
+      button:nth-child(2) {
+        background-color: $second-bgc;
+        color: $main-bgc;
+
+      }
+
     }
+
   }
 }
 
@@ -181,5 +206,4 @@ export default {
   .sidebar {
     position: static;
   }
-}
-</style>
+}</style>

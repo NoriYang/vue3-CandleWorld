@@ -1,17 +1,7 @@
 <template>
   <div class="product">
     <div class="container">
-      <nav class="product-breadcrumb" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <router-link to="/">首頁</router-link>
-          </li>
-          <li class="breadcrumb-item">
-            <router-link to="/home/productsList">商品列表</router-link>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
-        </ol>
-      </nav>
+      <Breadcrumb :productTitle="product.title"></Breadcrumb>
 
       <div class="row product-main">
 
@@ -53,8 +43,8 @@
             </button>
           </div>
           <div class="product-intro-button">
-            <button class="btn btn-outline-secondary btn-favorite ">加入至最愛</button>
-            <button class="btn btn-dark">加入購物車</button>
+            <button class="btn btn-favorite">加入至最愛</button>
+            <button class="btn btn-add-cart">加入購物車</button>
           </div>
 
         </div>
@@ -63,7 +53,9 @@
   </div>
 </template>
 <script>
+import Breadcrumb from '@/components/Home/Product/Breadcrumb.vue'
 export default {
+  components: { Breadcrumb },
   data () {
     return {
       product: {}
@@ -90,6 +82,8 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "@/assets/helpers/main.scss";
+
 .product-main {
   min-height: 480px;
 
@@ -104,7 +98,7 @@ export default {
   .product-intro {
     display: flex;
     flex-direction: column;
-
+    color: $main-font-color;
     .product-category {
       font-size: 24px;
     }
@@ -125,22 +119,28 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-
       button {
         height: 60px;
         display: inline-block;
         flex-grow: 1;
         letter-spacing: 3px;
         font-weight: 900;
-      }
-      button:nth-child(1){
-        margin-right: 30px;
+        color: $main-font-color;
       }
       .btn-favorite {
-        border: 3px solid rgba(0,0,0,0.5);
+        margin-right: 30px;
+        border: 3px solid $main-font-color;
       }
       .btn-add-cart {
-        border: 1px solid #000;
+        background-color: $main-font-color;
+        color: $main-bgc;
+      }
+      .btn-favorite:hover{
+        background-color: $main-font-color;
+        color: $main-bgc
+      }
+      .btn-add-cart:hover{
+        filter: brightness(1.75);
       }
     }
   }
