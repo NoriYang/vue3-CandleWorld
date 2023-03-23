@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-8 cart-lists">
-        {{ CartLists }}
+      <div class="col-12 col-md-8">
+        <Cartlists @delListHandler="delCartList" :cartLists="cartLists"></Cartlists>
       </div>
-      <div class="col-12 col-md-4 cart-info">
+      <div class="col-12 col-md-4">
         button區域
       </div>
     </div>
@@ -12,10 +12,13 @@
   </div>
 </template>
 <script>
+import Cartlists from '@/components/Home/ShoppingCart/CartLists.vue'
+
 export default {
+  components: { Cartlists },
   data () {
     return {
-      CartLists: []
+      cartLists: []
     }
   },
   methods: {
@@ -26,8 +29,19 @@ export default {
         .then(res => {
           this.isLoading = false
           if (res.data.success) {
-            this.CartLists = res.data.data.carts
+            this.cartLists = res.data.data.carts
             console.log(res.data.data.carts)
+          }
+        })
+    },
+    delCartList (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`
+      this.isLoading = true
+      this.$http.delete(api)
+        .then(res => {
+          this.isLoading = false
+          if (res.data.success) {
+            console.log('刪除成功', res.data)
           }
         })
     }

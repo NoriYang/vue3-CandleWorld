@@ -23,12 +23,12 @@
 
     <div class="product-qty">
       <span class="qty-text">數量：</span>
-      <button class="btn btn-outline-dark">
-        <i class="bi bi-plus"></i>
-      </button>
-      <span class="qty-unit">1 {{ product.unit }}</span>
-      <button class="btn btn-outline-dark">
+      <button @click="updateQty(-1)" class="btn btn-outline-dark">
         <i class="bi bi-dash"></i>
+      </button>
+      <span class="qty-unit">{{ qty }} {{ product.unit }}</span>
+      <button @click="updateQty(1)" class="btn btn-outline-dark">
+        <i class="bi bi-plus"></i>
       </button>
 
     </div>
@@ -47,13 +47,24 @@ export default {
       default: () => { return {} }
     }
   },
+  data () {
+    return {
+      qty: 1
+    }
+  },
   methods: {
+    updateQty (num) {
+      if (num === -1 && this.qty === 1) {
+        return
+      }
+      this.qty += num
+    },
     addToCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       const payload = {
         data: {
           product_id: this.product.id,
-          qty: 1
+          qty: this.qty
         }
       }
       this.isLoading = true
