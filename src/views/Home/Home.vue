@@ -21,7 +21,4 @@ export default {
 .main {
   min-height: 80dvh;
 }
-// .home-main {
-//   min-height: 100%;
-// }
 </style>

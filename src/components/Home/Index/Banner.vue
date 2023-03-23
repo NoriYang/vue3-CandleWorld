@@ -11,7 +11,7 @@
         草木花香
       </p>
       <div class="banner-link">
-        <router-link class="banner-link" to="dashboard/products">
+        <router-link class="banner-link" to="/home/productslist/lists">
           前往購買<i class="bi bi-chevron-right arrow-move"></i>
         </router-link>
       </div>

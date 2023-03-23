@@ -3,8 +3,9 @@
     <HomeLoading :isLoading="isLoading"></HomeLoading>
     <div class="container-xl">
       <div class="row main">
-        <sidebar :sidebarList="sidebarList" @changeSidebar="changeSidebarHandler"></sidebar>
-        <ProductsItems :sidebarTarget="sidebarTarget" :products="productsFilter"></ProductsItems>
+        <sidebar :sidebarList="sidebarList" :sidebarTarget="sidebarTarget" :isLoading="isLoading"
+          @changeSidebar="changeSidebarHandler"></sidebar>
+        <ProductsItems :products="productsFilter"></ProductsItems>
       </div>
     </div>
   </div>
@@ -15,7 +16,6 @@ import Sidebar from '@/components/Home/ProductsList/Sidebar.vue'
 import ProductsItems from '@/components/Home/ProductsList/ProductsItems.vue'
 export default {
   components: { Sidebar, ProductsItems },
-
   data () {
     return {
       sidebarTarget: '全部商品',
@@ -40,15 +40,14 @@ export default {
         .then(res => {
           this.isLoading = false
           if (res.data.success) {
-            console.log(res.data)
             this.products = res.data.products
             this.pagination = res.data.pagination
             this.getSidebar()
+            this.updateSibarTarget()
           }
         })
     },
     getProduct (id) {
-      console.log(id)
       this.$router.push('/home/product/' + id)
     },
     getSidebar () {
@@ -60,6 +59,19 @@ export default {
     },
     changeSidebarHandler (target) {
       this.sidebarTarget = target
+      if (this.$route.params.sidebarTarget !== 'lists') {
+        this.$router.replace('/home/productslist/lists')
+      }
+    },
+    updateSibarTarget () {
+      const target = this.$route.params.sidebarTarget
+      // 如果有分類
+      const flag = this.sidebarList.some((item) => {
+        return item === target
+      })
+      if (flag) {
+        this.sidebarTarget = this.$route.params.sidebarTarget + ''
+      }
     }
   },
   created () {

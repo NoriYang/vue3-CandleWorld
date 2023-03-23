@@ -3,8 +3,8 @@
     <ul class="sidebar-lists">
       <li class="sidebar-lists-item" :class="{ 'active': sidebarTarget == '全部商品' }" @click="chageSidebar('全部商品')">
         全部商品</li>
-      <li class="sidebar-lists-item" :class="{ 'active': sidebarTarget == list }" v-for="list of sidebarList" :key="list"
-        @click="chageSidebar(list)">
+      <li class="sidebar-lists-item" :class="{ 'active': sidebarTarget == list }" v-for="list of sidebarList"
+        :key="list" @click="chageSidebar(list)">
         {{ list }}
       </li>
     </ul>
@@ -14,25 +14,29 @@
 <script>
 export default {
   props: {
+    sidebarTarget: {
+      type: String
+    },
     sidebarList: {
       type: Array
-    }
-  },
-  data () {
-    return {
-      sidebarTarget: '全部商品'
+    },
+    isLoading: {
+      type: Boolean
     }
   },
   methods: {
     chageSidebar (target) {
       this.$emit('changeSidebar', target)
-      this.sidebarTarget = target
     }
+  },
+  created () {
+    console.log('sidebarTarget', this.$route.params.sidebarTarget)
   }
 }
 </script>
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
+
 .sidebar {
   margin-top: 20px;
   height: 100%;
@@ -44,6 +48,7 @@ export default {
     padding: 0;
     margin: 0;
     color: $main-font-color;
+
     .sidebar-lists-item {
       letter-spacing: 5px;
       font-size: 20px;
@@ -56,6 +61,7 @@ export default {
       cursor: pointer;
       position: relative;
       border-radius: 2px 0 0 5px;
+
       &.active {
         border-left: 5px solid $second-bgc;
       }

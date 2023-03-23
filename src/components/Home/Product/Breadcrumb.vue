@@ -1,5 +1,5 @@
 <template>
-  <nav class="product-breadcrumb" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+  <nav class="product-breadcrumb" aria-label="breadcrumb" style="--bs-breadcrumb-divider : '>';">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <router-link to="/">
@@ -7,7 +7,10 @@
         </router-link>
       </li>
       <li class="breadcrumb-item">
-        <router-link to="/home/productsList">商品列表</router-link>
+        <router-link to="/home/productsList/lists">商品列表</router-link>
+      </li>
+      <li class="breadcrumb-item" aria-current="page">
+        <a href="#" @click.prevent="goTarget">{{ productCategory }}</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
         {{ productTitle }}
@@ -21,7 +24,18 @@ export default {
     productTitle: {
       type: String,
       default: ''
+    },
+    productCategory: {
+      type: String,
+      default: ''
     }
+  },
+  methods: {
+    goTarget () {
+      this.$router.push('/home/productslist/' + this.productCategory)
+    }
+  },
+  created () {
   }
 }
 </script>
@@ -32,10 +46,12 @@ export default {
   margin-top: 10px;
   font-size: 20px;
   font-weight: 900;
+
   a {
     text-decoration: none;
     color: $second-bgc;
   }
+
   a:hover {
     filter: brightness(1.5);
   }

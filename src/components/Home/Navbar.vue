@@ -19,7 +19,7 @@
             <router-link class="nav-link" to="/">關於我們</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/home/productslist">商品列表</router-link>
+            <router-link class="nav-link" to="/home/productslist/lists">商品列表</router-link>
           </li>
         </ul>
 
@@ -28,7 +28,7 @@
             <router-link class="nav-link" to="/"><i class="bi bi-bookmark"></i></router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/"><i class="bi bi-cart"></i></router-link>
+            <router-link class="nav-link" to="/home/Shoppingcart"><i class="bi bi-cart"></i></router-link>
           </li>
         </ul>
 

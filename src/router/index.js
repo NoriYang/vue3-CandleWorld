@@ -15,7 +15,7 @@ const routes = [
     component: Home,
     children: [
       {
-        path: 'productslist',
+        path: 'productslist/:sidebarTarget',
         name: 'ProductsList',
         component: () => import('../views/Home/ProductsList.vue')
       },
@@ -23,6 +23,11 @@ const routes = [
         path: 'product/:productId',
         name: 'product',
         component: () => import('../views/Home/Product.vue')
+      },
+      {
+        path: 'shoppingcart',
+        name: 'shoppingcart',
+        component: () => import('@/views/Home/ShoppingCart.vue')
       }
     ]
   },
