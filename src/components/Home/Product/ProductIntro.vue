@@ -1,27 +1,28 @@
 <template>
   <div class="col-12 col-md-6 product-intro">
-    <div class="product-category">
+    <div class="product-category" v-if="product.category">
       <span>
         {{ product.category }}
       </span>
     </div>
-    <div class="product-title">
+    <div class="product-title" v-if="product.title">
       {{ product.title }}
     </div>
-    <div class="product-price">
+    <div class="product-price" v-if="product.price">
       <span>${{ $filters.currency(product.price) }}</span>
       <span>${{ $filters.currency(product.origin_price) }}</span>
     </div>
-    <div class="product-des">
+    <div class="product-des" v-if="product.description">
       <h2>產品規格</h2>
-      {{ product.description }}
+      <!-- {{ product.description }} -->
+      <div v-html="textDescriptionBR"></div>
     </div>
-    <div class="product-content">
+    <div class="product-content" v-if="product.content">
       <h2>產品說明</h2>
-      {{ product.content }}
+      <div v-html="textContentBR"></div>
+      <!-- {{ product.content }} -->
     </div>
-
-    <div class="product-qty">
+    <div class="product-qty" v-if="product.unit">
       <span class="qty-text">數量：</span>
       <button @click="updateQty(-1)" class="btn btn-outline-dark">
         <i class="bi bi-dash"></i>
@@ -30,10 +31,9 @@
       <button @click="updateQty(1)" class="btn btn-outline-dark">
         <i class="bi bi-plus"></i>
       </button>
-
     </div>
     <div class="product-intro-button">
-      <button class="btn btn-favorite">加入至最愛</button>
+      <button @click="addToFavorite" class="btn btn-favorite">加入至最愛</button>
       <button @click="addToCart" class="btn btn-add-cart">加入購物車</button>
     </div>
   </div>
@@ -52,6 +52,14 @@ export default {
       qty: 1
     }
   },
+  computed: {
+    textDescriptionBR () {
+      return this.product.description.replace(/\n/g, '<br>')
+    },
+    textContentBR () {
+      return this.product.content.replace(/\n/g, '<br>')
+    }
+  },
   methods: {
     updateQty (num) {
       if (num === -1 && this.qty === 1) {
@@ -60,21 +68,10 @@ export default {
       this.qty += num
     },
     addToCart () {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-      const payload = {
-        data: {
-          product_id: this.product.id,
-          qty: this.qty
-        }
-      }
-      this.isLoading = true
-      this.$http.post(api, payload)
-        .then(res => {
-          this.isLoading = false
-          if (res.data.success) {
-            console.log(res.data)
-          }
-        })
+      this.$emit('addCartHandler', this.qty)
+    },
+    addToFavorite () {
+      this.$emit('addFavoriteHandler', this.product.id)
     }
   }
 }
@@ -167,6 +164,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-top: 15px;
 
     button {
       height: 60px;

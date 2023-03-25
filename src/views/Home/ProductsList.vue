@@ -5,7 +5,7 @@
       <div class="row main">
         <sidebar :sidebarList="sidebarList" :sidebarTarget="sidebarTarget" :isLoading="isLoading"
           @changeSidebar="changeSidebarHandler"></sidebar>
-        <ProductsItems :products="productsFilter"></ProductsItems>
+        <ProductsItems :products="productsFilter" @addCartHandler="addCart" :loadingItem="status.loadingItem"></ProductsItems>
       </div>
     </div>
   </div>
@@ -14,6 +14,7 @@
 <script>
 import Sidebar from '@/components/Home/ProductsList/Sidebar.vue'
 import ProductsItems from '@/components/Home/ProductsList/ProductsItems.vue'
+import emitter from '@/methods/emitter.js'
 export default {
   components: { Sidebar, ProductsItems },
   data () {
@@ -22,7 +23,10 @@ export default {
       products: [],
       sidebarList: [],
       pagination: {},
-      isLoading: false
+      isLoading: false,
+      status: {
+        loadingItem: '' // 對應品項ID
+      }
     }
   },
   computed: {
@@ -72,6 +76,26 @@ export default {
       if (flag) {
         this.sidebarTarget = this.$route.params.sidebarTarget + ''
       }
+    },
+    addCart (productId, qty = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+      const payload = {
+        data: {
+          product_id: productId,
+          qty: qty
+        }
+      }
+      this.status.loadingItem = productId
+      this.$http.post(api, payload)
+        .then(res => {
+          if (res.data.success) {
+            this.status.loadingItem = ''
+            this.updateNavCartLength()
+          }
+        })
+    },
+    updateNavCartLength () {
+      emitter.emit('updateCartLength')
     }
   },
   created () {

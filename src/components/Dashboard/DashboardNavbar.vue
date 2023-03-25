@@ -21,6 +21,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/dashboard/Orders">訂單列表</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/dashboard/coupons">優惠卷</router-link>
+          </li>
         </ul>
 
         <ul class="navbar-nav navbar-cart-md">

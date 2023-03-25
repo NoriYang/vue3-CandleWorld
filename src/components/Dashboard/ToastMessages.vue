@@ -16,7 +16,6 @@ export default {
     }
   },
   mounted () {
-    console.log('Test')
     this.emitter.on('push-message', (message) => {
       const { style = 'success', title, content } = message
       this.messages.push({ style, title, content })

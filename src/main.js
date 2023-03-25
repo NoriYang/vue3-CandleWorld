@@ -15,6 +15,7 @@ import { currency, date } from '@/methods/filters'
 import $httpMessageState from '@/methods/pushMessageState'
 
 const app = createApp(App)
+
 app.config.globalProperties.$filters = {
   currency,
   date

@@ -1,5 +1,6 @@
 <template>
   <div class="product">
+    <HomeLoading :isLoading="isLoading"></HomeLoading>
     <div class="container">
       <Breadcrumb :productTitle="product.title" :productCategory="product.category"></Breadcrumb>
       <div class="row product-main">
@@ -8,7 +9,7 @@
           <div class="product-img" :style="{ backgroundImage: `url(${product.imageUrl})` }">
           </div>
         </div>
-        <ProductIntro :product="product"></ProductIntro>
+        <ProductIntro :product="product" @addCartHandler="addCart"></ProductIntro>
       </div>
     </div>
   </div>
@@ -16,12 +17,15 @@
 <script>
 import Breadcrumb from '@/components/Home/Product/Breadcrumb.vue'
 import ProductIntro from '@/components/Home/Product/ProductIntro.vue'
+import HomeLoading from '@/components/Content/HomeLoading.vue'
+import emitter from '@/methods/emitter.js'
 
 export default {
-  components: { Breadcrumb, ProductIntro },
+  components: { Breadcrumb, ProductIntro, HomeLoading },
   data () {
     return {
-      product: {}
+      product: {},
+      isLoading: false
     }
   },
   methods: {
@@ -36,6 +40,26 @@ export default {
             this.product = res.data.product
           }
         })
+    },
+    addCart (qty) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+      const payload = {
+        data: {
+          product_id: this.product.id,
+          qty: qty
+        }
+      }
+      this.isLoading = true
+      this.$http.post(api, payload)
+        .then(res => {
+          this.isLoading = false
+          if (res.data.success) {
+            this.updateNavCartLength()
+          }
+        })
+    },
+    updateNavCartLength () {
+      emitter.emit('updateCartLength')
     }
   },
   created () {

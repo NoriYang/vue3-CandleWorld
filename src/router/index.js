@@ -28,6 +28,11 @@ const routes = [
         path: 'shoppingcart',
         name: 'shoppingcart',
         component: () => import('@/views/Home/ShoppingCart.vue')
+      },
+      {
+        path: 'checkorder',
+        name: 'CheckOrder',
+        component: () => import('@/views/Home/CheckOrder.vue')
       }
     ]
   },
@@ -49,7 +54,12 @@ const routes = [
       {
         path: 'orders',
         name: 'Orders',
-        component: () => import('../components/Dashboard/Orders.vue')
+        component: () => import('../views/Dashboard/Orders.vue')
+      },
+      {
+        path: 'coupons',
+        name: 'Coupons',
+        component: () => import('../views/Dashboard/Coupons.vue')
       }
     ]
   }

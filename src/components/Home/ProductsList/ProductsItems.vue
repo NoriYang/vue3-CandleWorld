@@ -19,10 +19,12 @@
                 </div>
                 <div class="button-lists">
                   <button class="btn">
-                    <i class="bi bi-suit-heart"></i>
+                    <i class="bi bi-bookmark"></i>
                   </button>
-                  <button class="btn">
-                    <i class="bi bi-cart3"></i>
+                  <button class="btn" @click="addToCart(product.id)" :disabled="loadingItem === product.id">
+                    <i v-if="loadingItem !== product.id"
+                      class="bi bi-cart3"></i>
+                    <span v-else class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                   </button>
                 </div>
               </div>
@@ -46,12 +48,18 @@ export default {
     products: {
       type: Array,
       default: () => []
+    },
+    loadingItem: {
+      type: String,
+      default: ''
     }
   },
   methods: {
     getProduct (id) {
-      console.log(id)
       this.$router.push('/home/product/' + id)
+    },
+    addToCart (productId) {
+      this.$emit('addCartHandler', productId)
     }
   }
 }
@@ -68,7 +76,7 @@ export default {
 .cart-item {
   border: none;
   border-radius: 0px;
-  background-color: $main-bgc;
+  background-color: inherit;
 }
 
 .card-item {
@@ -77,6 +85,7 @@ export default {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   color: $main-font-color;
   border-radius: 0 0 5px 5px;
+
   .card-item-img {
     height: 200px;
     background-size: cover;
@@ -92,7 +101,7 @@ export default {
       opacity: 0;
 
       i {
-        color: $second-bgc;
+        color: $main-font-color;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -137,12 +146,13 @@ export default {
   }
 
   .card-title:nth-child(1) {
-    color: $second-bgc;
+    color: $main-font-color;
   }
 
   .card-title:nth-child(2) {
     font-size: 16px;
     font-weight: 900;
+    color: $main-font-color;
   }
 
   .card-body {
@@ -169,7 +179,7 @@ export default {
       }
 
       .price {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 900;
       }
     }
@@ -187,18 +197,15 @@ export default {
       button:hover {}
 
       button:nth-child(1) {
-        color: $second-bgc;
-        border: 1px solid $second-bgc;
+        color: $third-bgc;
+        border: 1px solid $third-bgc;
       }
 
       button:nth-child(2) {
-        background-color: $second-bgc;
+        background-color: $third-bgc;
         color: $main-bgc;
-
       }
-
     }
-
   }
 }
 
@@ -206,4 +213,5 @@ export default {
   .sidebar {
     position: static;
   }
-}</style>
+}
+</style>

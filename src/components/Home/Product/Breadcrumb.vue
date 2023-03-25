@@ -34,8 +34,6 @@ export default {
     goTarget () {
       this.$router.push('/home/productslist/' + this.productCategory)
     }
-  },
-  created () {
   }
 }
 </script>

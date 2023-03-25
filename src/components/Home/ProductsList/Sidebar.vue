@@ -3,8 +3,8 @@
     <ul class="sidebar-lists">
       <li class="sidebar-lists-item" :class="{ 'active': sidebarTarget == '全部商品' }" @click="chageSidebar('全部商品')">
         全部商品</li>
-      <li class="sidebar-lists-item" :class="{ 'active': sidebarTarget == list }" v-for="list of sidebarList"
-        :key="list" @click="chageSidebar(list)">
+      <li class="sidebar-lists-item" :class="{ 'active': sidebarTarget == list }" v-for="list of sidebarList" :key="list"
+        @click="chageSidebar(list)">
         {{ list }}
       </li>
     </ul>
@@ -28,9 +28,6 @@ export default {
     chageSidebar (target) {
       this.$emit('changeSidebar', target)
     }
-  },
-  created () {
-    console.log('sidebarTarget', this.$route.params.sidebarTarget)
   }
 }
 </script>
