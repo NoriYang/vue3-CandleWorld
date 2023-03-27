@@ -70,7 +70,7 @@ export default {
       [this.due_date] = dateAndTime
     },
     due_date () {
-      this.tempCoupon.due_date = Math.floor(new Date(this.due_date))
+      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000)
     }
   },
   mixins: [modalMixin],
