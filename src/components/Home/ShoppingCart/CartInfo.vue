@@ -24,11 +24,13 @@
       <input type="text" v-model="couponCode" placeholder="請輸入折扣碼">
       <button @click="setCoupon">確認</button>
     </div>
-    <div class="d-grid gap-2">
-      <button class="clean-btn" @click="cleanCart">清空購物車</button>
-    </div>
-    <div class="d-grid gap-2">
-      <button class="buy-btn" @click="goCartForm">確認購買</button>
+    <div class="main-buttons">
+      <div class="d-grid gap-2">
+        <button class="clean-btn" @click="cleanCart">清空購物車</button>
+      </div>
+      <div class="d-grid gap-2">
+        <button class="buy-btn" @click="goCartForm">確認購買</button>
+      </div>
     </div>
   </div>
 </template>
@@ -70,7 +72,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
-
 .info-wrap {
   position: sticky;
   top: 80px;
@@ -141,7 +142,7 @@ export default {
 }
 
 .clean-btn {
-  background-color: $main-bgc;
+  background-color: #fff;
   border: 2px solid #d15662;
   color: #d15662;
   font-weight: 600;
@@ -153,6 +154,13 @@ export default {
   font-weight: 600;
 }
 
+.main-buttons {
+  background-color: #fff;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  padding: 15px;
+}
+
 @media (max-width: 991px) {
   .coupon {
     input {
@@ -160,5 +168,4 @@ export default {
     }
   }
 }
-
 </style>

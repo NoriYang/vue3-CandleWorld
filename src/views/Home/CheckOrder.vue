@@ -1,66 +1,85 @@
 <template>
   <div>
-    <div class="col-md-5">
-      <div class="sticky-top">
-        <table class="table align-middle">
-          <thead>
-            <tr>
-              <th></th>
-              <th>品名</th>
-              <th style="width: 110px">數量</th>
-              <th>單價</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <button type="button" class="btn btn-outline-danger btn-sm">
-                  <i class="bi bi-x"></i>
-                </button>
-              </td>
-              <td>
-                標題
-                <div class="text-success">
-                  已套用優惠券
-                </div>
-              </td>
-              <td>
-                <div class="input-group input-group-sm">
-                  <input type="number" class="form-control">
-                  <div class="input-group-text">/ 單位</div>
-                </div>
-              </td>
-              <td class="text-end">
-                <small class="text-success">折扣價：</small>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" class="text-end">總計</td>
-              <td class="text-end">199</td>
-            </tr>
-            <tr>
-              <td colspan="3" class="text-end text-success">折扣價</td>
-              <td class="text-end text-success">199</td>
-            </tr>
-          </tfoot>
-        </table>
-        <div class="input-group mb-3 input-group-sm">
-          <input type="text" class="form-control" placeholder="請輸入優惠碼">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">
-              套用優惠碼
-            </button>
-          </div>
+    <div class="my-5 row justify-content-center">
+      <VForm ref="orderForm" v-slot="{ meta, errors }" @submit="createOrder">
+        {{ errors }}
+
+        <div>
+          <label for="name" class="form-label">姓名</label>
+          <VField v-model="form.user.name" name="name" type="text" rules="required" class="form-control"
+            placeholder="請輸入姓名" :class="{ 'is-invalid': errors['name'] }">
+          </VField>
+          <ErrorMessage class="invalid-feedback" name="name" />
+
         </div>
-      </div>
+
+        <div>
+          <label for="email" class="form-label">信箱:</label>
+          <VField v-model="form.user.email" name="email" type="email" rules="required|email" class="form-control"
+            :class="{ 'is-invalid': errors['email'] }" placeholder="example@email.com" />
+          <ErrorMessage class="invalid-feedback" name="email" />
+          <!-- error-message 的 name 要跟 VField 的 name 對應 -->
+        </div>
+
+        <div>
+          <label for="phone" class="form-label">電話</label>
+          <VField v-model="form.user.tel" name="phone" type="text" :rules="isPhone" class="form-control"
+            placeholder="請輸入電話" :class="{ 'is-invalid': errors['phone'] }"></VField>
+          <ErrorMessage class="invalid-feedback" name="phone" />
+        </div>
+
+        <div>
+          <label for="address" class="form-label">地址</label>
+          <VField v-model="form.user.address" name="address" type="text" rules="required" class="form-control"
+            placeholder="請輸入地址" :class="{ 'is-invalid': errors['address'] }"></VField>
+          <ErrorMessage class="invalid-feedback" name="address" />
+        </div>
+
+        <div>
+          <label for="message" class="form-label">備註</label>
+          <textarea v-model="form.message" class="form-control" id="form-message"></textarea>
+        </div>
+        <button type="submit" :disabled="!meta.valid">送出</button>
+        <button type="button" @click="resetForm">重設</button>
+      </VForm>
     </div>
   </div>
 </template>
 <script>
 export default {
-
+  data () {
+    return {
+      form: {
+        user: {
+          name: '',
+          email: '',
+          phone: '',
+          address: ''
+        },
+        message: ''
+      }
+    }
+  },
+  methods: {
+    createOrder () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
+      const payload = this.form
+      this.$http.post(api, { data: payload })
+        .then(res => {
+          if (res.data.success) {
+            console.log(res)
+            this.resetForm()
+          }
+        })
+    },
+    resetForm () {
+      this.$refs.orderForm.resetForm()
+    },
+    isPhone (value) {
+      const phoneNumber = /^(09)[0-9]{8}$/
+      return phoneNumber.test(value) ? true : '需要正確的電話號碼'
+    }
+  }
 }
 </script>
 <style lang="scss" scoped></style>

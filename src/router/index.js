@@ -33,6 +33,11 @@ const routes = [
         path: 'checkorder',
         name: 'CheckOrder',
         component: () => import('@/views/Home/CheckOrder.vue')
+      },
+      {
+        path: 'checkout/:orderId',
+        name: 'CheckOut',
+        component: () => import('@/views/Home/CheckOut.vue')
       }
     ]
   },

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <table class="table" v-if="false">
+    <table class="table" v-if="true">
       <thead class="table-thead">
         <tr>
           <th class="thead-img">圖片</th>
-          <th>商品內容</th>
+          <th>內容</th>
           <th>單價</th>
           <th>數量</th>
           <th>總計</th>
@@ -20,27 +20,27 @@
               </div>
             </td>
             <td class="list-title">
-
-              {{ list.product.title }}
-
+              <span>{{ list.product.title.split('-')[0] }}</span>
+              <span>{{ list.product.title.split('-')[1] }}</span>
             </td>
             <td class="list-per-price">
               {{ $filters.currency(list.product.price) }}
             </td>
+
             <td class="list-qty-buttons">
               <div class="btn-wrap">
-                <button class="btn qty-btn qty-btn-right" @click="updateCart(list, -1)" :disabled="list.qty === 1">
+                <button class="btn qty-btn" @click="updateCart(list, -1)" :disabled="list.qty === 1">
                   <i class="bi bi-dash"></i>
                 </button>
                 <span class="list-qty-text">
                   {{ list.qty }}
-                  <!-- {{ list.product.unit }} -->
                 </span>
-                <button class="btn qty-btn qty-btn-left" @click="updateCart(list, 1)">
+                <button class="btn qty-btn" @click="updateCart(list, 1)">
                   <i class="bi bi-plus"></i>
                 </button>
               </div>
             </td>
+
             <td class="list-product-price-count">
               {{ $filters.currency(list.final_total) }}
             </td>
@@ -61,46 +61,6 @@
         </slot>
       </tbody>
     </table>
-    <div class="list-cards">
-      <div class="list-card" v-for="cart of cartLists" :key="cart.id">
-        <div class="card-top">
-          <div class="card-img">
-            <img :src="cart.product.imageUrl" alt="">
-          </div>
-          <div class="card-info">
-            <div class="info-title">
-              <span>{{ cart.product.title.split('-')[0] }}</span>
-              <span>{{ cart.product.title.split('-')[1] }}</span>
-            </div>
-            <div class="info-per-price">
-              $ {{ $filters.currency(cart.product.price) }}
-            </div>
-
-          </div>
-        </div>
-        <div class="info-bottom">
-          <div class="info-qty-buttons">
-            <button class="btn qty-btn qty-btn-right" @click="updateCart(cart, -1)" :disabled="cart.qty === 1">
-              <i class="bi bi-dash"></i>
-            </button>
-            <span class="cart-qty-text">
-              {{ cart.qty }}
-            </span>
-            <button class="btn qty-btn qty-btn-left" @click="updateCart(cart, 1)">
-              <i class="bi bi-plus"></i>
-            </button>
-          </div>
-          <div class="card-total-price">
-            $ {{ $filters.currency(cart.final_total) }}
-          </div>
-        </div>
-        <div class="clean-btn">
-          <button class="btn del-btn" @click="delList(cart.id)">
-            <i class="bi bi-trash-fill"></i>
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <script>
@@ -150,6 +110,10 @@ tr {
 
   .list-title {
     padding-left: 10px;
+
+    span {
+      display: block;
+    }
   }
 
   .list-per-price {
@@ -161,11 +125,12 @@ tr {
   }
 
   .list-qty-buttons {
-    min-width: 170px;
+    padding: 0;
 
     .btn-wrap {
+      min-width: 98px;
       display: inline-block;
-      border: 1px solid #9a9a9a;
+      border: 1px solid rgba(#919191, 0.5);
       border-radius: 5px;
       font-size: 18px;
       box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.1);
@@ -174,35 +139,40 @@ tr {
     .list-qty-text {
       display: inline-block;
       vertical-align: middle;
-      min-width: 50px;
+      min-width: 40px;
     }
 
     .qty-btn {
-      padding: 10px 5px;
+      padding: 5px 5px;
       border-radius: 0;
-      border: none;
       font-size: 18px;
-      background-color: rgba(#9a9a9a, 0.6);
+      background-color: rgba(#9a9a9a, 0.4);
+      border: none;
+      color: #000;
     }
 
-    .qty-btn-right {
-      border-right: 1px solid #9a9a9a;
+    .qty-btn:disabled {
+      background-color: rgba(#9a9a9a, 0.2);
+      color: rgba(#000, 0.5);
     }
 
-    .qty-btn-left {
-      border-left: 1px solid #9a9a9a;
+  }
+
+  .list-del-btn {
+    padding: 0;
+    width: 40px;
+    .del-btn {
+      padding: 5px 8px;
+      border: 1px solid #dc3545;
+      color: #dc3545;
+
+      &:hover {
+        color: white;
+        background-color: #dc3545;
+      }
     }
   }
 
-  .del-btn {
-    border: 1px solid #dc3545;
-    color: #dc3545;
-
-    &:hover {
-      color: white;
-      background-color: #dc3545;
-    }
-  }
 }
 
 .Empty-cart {
@@ -221,134 +191,24 @@ tr {
 }
 
 @media (max-width: 540px) {
-  .table-thead {
-    font-size: 16px;
+
+  .list-qty-buttons {
+    .btn-wrap {
+      font-size: 16px;
+    }
+
+    .list-qty-text {
+      font-size: 16px;
+    }
+
+    .qty-btn {
+      font-size: 16px;
+    }
   }
 
   .product-list {
-    font-size: 16px;
-  }
-
-}
-
-.list-cards {
-  margin-bottom: 5px;
-
-  .list-card {
-    margin-bottom: 10px;
-    background-color: #fff;
-    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.15);
-    position: relative;
-
-    .card-top {
-      padding: 10px;
-      display: flex;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-
-      .card-img {
-        width: 150px;
-        height: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-          width: 120px;
-          height: 120px;
-          box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.15);
-        }
-      }
-
-      .card-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 100%;
-        padding-left: 10px;
-
-        .info-title {
-          :nth-child(1) {
-            font-weight: 800;
-            font-size: 16px;
-            display: block;
-          }
-
-          :nth-child(2) {
-            font-size: 24px;
-            font-weight: 900;
-            display: block;
-          }
-        }
-
-        .info-per-price {
-          font-weight: 800;
-          color: #ff6645
-        }
-      }
-    }
-
-    .info-bottom {
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .info-qty-buttons {
-        display: inline-block;
-        font-size: 18px;
-
-        .cart-qty-text {
-          padding: 2px 0px;
-          display: inline-block;
-          vertical-align: middle;
-          min-width: 50px;
-          text-align: center;
-          border: 1px solid rgba(#888, 0.5);
-        }
-
-        .qty-btn {
-          padding: 2px 5px;
-          font-size: 18px;
-          background-color: #888;
-          border-radius: 0px;
-
-          i {
-            color: #fff
-          }
-        }
-
-        .qty-btn:disabled {
-          border: 1px solid rgba(#888, 0.5);
-        }
-      }
-
-      .card-total-price {
-        font-weight: 900;
-        font-size: 1.2rem;
-        color: #ff6645
-      }
-    }
-
-    .clean-btn {
-      position: absolute;
-      right: 0;
-      top: 0;
-      transform: translateX(-25%) translateY(25%);
-      z-index: 1;
-
-      .del-btn {
-        border-radius: 99em;
-        color: #dc3545;
-        border: 1px solid #dc3545;
-
-        &:hover {
-          color: white;
-          background-color: #dc3545;
-        }
-      }
-    }
+    font-size: 14px;
   }
 }
+
 </style>
