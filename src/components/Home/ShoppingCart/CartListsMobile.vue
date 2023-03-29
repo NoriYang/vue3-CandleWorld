@@ -1,50 +1,69 @@
 <template>
   <div>
-    <div class="list-cards" v-if="false">
-      <div class="list-card" v-for="cart of cartLists" :key="cart.id">
-        <div class="card-top">
-          <div class="card-img">
-            <img :src="cart.product.imageUrl" alt="">
-          </div>
-          <div class="card-info">
-            <div class="info-title">
-              <span>{{ cart.product.title.split('-')[0] }}</span>
-              <span>{{ cart.product.title.split('-')[1] }}</span>
+    <div class="list-cards">
+      <div class="cart" v-if="cartLists.length != 0">
+        <div class="list-card" v-for="cart of cartLists" :key="cart.id">
+          <div class="card-top">
+            <div class="card-img">
+              <img :src="cart.product.imageUrl" alt="">
             </div>
-            <div class="info-per-price">
-              $ {{ $filters.currency(cart.product.price) }}
-            </div>
+            <div class="card-info">
+              <div class="info-title">
+                <span>{{ cart.product.title.split('-')[0] }}</span>
+                <span>{{ cart.product.title.split('-')[1] }}</span>
+              </div>
+              <div class="info-per-price">
+                $ {{ $filters.currency(cart.product.price) }}
+              </div>
 
+            </div>
           </div>
-        </div>
-        <div class="info-bottom">
-          <div class="info-qty-buttons">
-            <button class="btn qty-btn qty-btn-right" @click="updateCart(cart, -1)" :disabled="cart.qty === 1">
-              <i class="bi bi-dash"></i>
+          <div class="info-bottom">
+            <div class="info-qty-buttons">
+              <button class="btn qty-btn qty-btn-right" @click="updateCart(cart, -1)" :disabled="cart.qty === 1">
+                <i class="bi bi-dash"></i>
+              </button>
+              <span class="cart-qty-text">
+                {{ cart.qty }}
+              </span>
+              <button class="btn qty-btn qty-btn-left" @click="updateCart(cart, 1)">
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+            <div class="card-total-price">
+              $ {{ $filters.currency(cart.final_total) }}
+            </div>
+          </div>
+          <div class="clean-btn">
+            <button class="btn del-btn" @click="delList(cart.id)">
+              <i class="bi bi-trash-fill"></i>
             </button>
-            <span class="cart-qty-text">
-              {{ cart.qty }}
-            </span>
-            <button class="btn qty-btn qty-btn-left" @click="updateCart(cart, 1)">
-              <i class="bi bi-plus"></i>
-            </button>
-          </div>
-          <div class="card-total-price">
-            $ {{ $filters.currency(cart.final_total) }}
           </div>
         </div>
-        <div class="clean-btn">
-          <button class="btn del-btn" @click="delList(cart.id)">
-            <i class="bi bi-trash-fill"></i>
-          </button>
-        </div>
+      </div>
+      <div class="Empty-cart" v-else>
+        <h2>購物車內無選購商品</h2>
+        <span>請前往<router-link to="/home/productslist/lists">商品列表</router-link></span>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-
+  props: {
+    cartLists: {
+      type: Array
+    }
+  },
+  methods: {
+    delList (id) {
+      this.$emit('delListHandler', id)
+    },
+    updateCart (list, num) {
+      list.qty += num
+      this.$emit('updateCartHandler', list)
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -152,7 +171,7 @@ export default {
       position: absolute;
       right: 0;
       top: 0;
-      transform: translateX(-25%) translateY(25%);
+      transform: translateX(-25%) translateY(25%) scale(0.6);
       z-index: 1;
 
       .del-btn {
@@ -167,5 +186,22 @@ export default {
       }
     }
   }
-}
-</style>
+
+  .Empty-cart {
+    padding: 50px;
+    text-align: center;
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    span {
+      font-size: 1.2rem;
+      font-weight: 900;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}</style>

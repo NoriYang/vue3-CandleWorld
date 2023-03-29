@@ -6,39 +6,51 @@
     <div class="container-xl">
       <HomeLoading :isLoading="isLoading"></HomeLoading>
       <div class="row">
-        <div class="col-12 col-md-12 col-lg-9">
-          <Cartlists @delListHandler="delCartList" @updateCartHandler="updateCart" :cartLists="cartLists"></Cartlists>
+        <div class="col-12 col-md-12 col-lg-9 main-table">
+          <Cartlists @delListHandler="openDelListModal" @updateCartHandler="updateCart" :cartLists="cartLists">
+          </Cartlists>
+        </div>
+        <div class="col-12 col-md-12 col-lg-9 lists-mobile">
+          <CartListsMobile @delListHandler="openDelListModal" @updateCartHandler="updateCart" :cartLists="cartLists">
+          </CartListsMobile>
         </div>
         <div class="col-12 col-md-12 col-lg-3">
-          <CartInfo :total="total" :finalTotal="finalTotal" :cartLength="cartLists.length"
-          @setCouponHandler="setCoupon"
-          @cleanCartHandler="cleanCart"
-          ></CartInfo>
+          <CartInfo :total="total" :cartLength="cartLists.length" @setCouponHandler="setCoupon"
+            @cleanCartHandler="openDelListModal"></CartInfo>
         </div>
       </div>
       <br>
     </div>
+    <WarnModal ref="WarnModal" :delTitle="delTitle" @delItem="delCartList" @cleanCartHandler="cleanCart"></WarnModal>
+
   </div>
 </template>
 <script>
 import Cartlists from '@/components/Home/ShoppingCart/CartLists.vue'
+import CartListsMobile from '@/components/Home/ShoppingCart/CartListsMobile.vue'
 import CartBanner from '@/components/Home/ImgBanner.vue'
 import CartInfo from '@/components/Home/ShoppingCart/CartInfo.vue'
+import WarnModal from '@/components/Home/WarnModal.vue'
+
 import emitter from '@/methods/emitter.js'
 export default {
-  components: { Cartlists, CartBanner, CartInfo },
+  components: { Cartlists, CartBanner, CartInfo, CartListsMobile, WarnModal },
   data () {
     return {
       cartLists: [],
       isLoading: true,
-
       total: 0,
-      finalTotal: 0,
-
-      couponCode: ''
+      couponCode: '',
+      delID: '',
+      delTitle: ''
     }
   },
   methods: {
+    openDelListModal ({ id, title }) {
+      this.delID = id
+      this.delTitle = title
+      this.$refs.WarnModal.showModal()
+    },
     getCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.isLoading = true
@@ -47,23 +59,24 @@ export default {
           this.isLoading = false
           if (res.data.success) {
             this.cartLists = res.data.data.carts
-            console.log(this.cartLists)
             this.getPrice()
           }
         })
     },
-    delCartList (id) {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`
+    delCartList () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${this.delID}`
       this.isLoading = true
       this.$http.delete(api)
         .then(res => {
           this.isLoading = false
           if (res.data.success) {
-            console.log('刪除成功', res.data)
             this.getCart()
             this.updateNavCartLength()
           }
         })
+      this.delID = ''
+      this.delTitle = ''
+      this.$refs.WarnModal.hideModal()
     },
     goCartForm () {
       this.$router.push('/home/checkorder')
@@ -102,20 +115,21 @@ export default {
     },
     getPrice () {
       let total = 0
-      let finalTotal = 0
       this.cartLists.forEach((list) => {
         total += list.total
-        finalTotal += list.final_total
       })
       this.total = total
-      this.finalTotal = finalTotal
     },
     cleanCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`
       this.$http.delete(api)
         .then(res => {
           this.getCart()
+          this.updateNavCartLength()
         })
+      this.delID = ''
+      this.delTitle = ''
+      this.$refs.WarnModal.hideModal()
     }
   },
   created () {
@@ -125,4 +139,17 @@ export default {
 </script>
 <style lang="scss" scoped>
 // @import "@/assets/helpers/main.scss";
+.lists-mobile {
+  display: none;
+}
+
+@media (max-width: 440px) {
+  .main-table {
+    display: none;
+  }
+
+  .lists-mobile {
+    display: block;
+  }
+}
 </style>

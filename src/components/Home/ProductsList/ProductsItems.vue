@@ -21,9 +21,8 @@
                   <button class="btn">
                     <i class="bi bi-bookmark"></i>
                   </button>
-                  <button class="btn" @click="addToCart(product.id)" :disabled="loadingItem === product.id">
-                    <i v-if="loadingItem !== product.id"
-                      class="bi bi-cart3"></i>
+                  <button class="btn" @click="addToCart(product.id, product.title)" :disabled="loadingItem === product.id">
+                    <i v-if="loadingItem !== product.id" class="bi bi-cart3"></i>
                     <span v-else class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                   </button>
                 </div>
@@ -58,8 +57,8 @@ export default {
     getProduct (id) {
       this.$router.push('/home/product/' + id)
     },
-    addToCart (productId) {
-      this.$emit('addCartHandler', productId)
+    addToCart (productId, productTitle) {
+      this.$emit('addCartHandler', { productId, productTitle })
     }
   }
 }
@@ -142,7 +141,7 @@ export default {
   .card-title {
     font-size: 18px;
     text-align: center;
-    font-weight: 900;
+
   }
 
   .card-title:nth-child(1) {
@@ -151,7 +150,7 @@ export default {
 
   .card-title:nth-child(2) {
     font-size: 16px;
-    font-weight: 900;
+    font-weight: 400;
     color: $main-font-color;
   }
 

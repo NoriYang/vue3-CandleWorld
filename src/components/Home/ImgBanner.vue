@@ -49,6 +49,7 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
   h2 {
     font-size: 2rem;
     font-weight: 700;

@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="my-5 row justify-content-center">
-      <form class="col-md-6" @submit.prevent="payOrder">
+    <div class="my-5 row justify-content-center main-list">
+      <form class="col-md-6 list-table" @submit.prevent="payOrder">
         <table class="table align-middle">
-          <thead>
-            <th>品名</th>
-            <th>數量</th>
-            <th>單價</th>
+          <thead class="order-thead">
+            <th class="thead-title">品名</th>
+            <th class="thead-qty">數量</th>
+            <th class="thead-per-price text-end">單價</th>
           </thead>
           <tbody>
-            <tr v-for="item in order.products" :key="item.id">
-              <td>{{ item.product.title }}</td>
+            <tr class="order-lists" v-for="item in order.products" :key="item.id">
+              <td class="list-title">{{ item.product.title }}</td>
               <td>{{ item.qty }}/{{ item.product.unit }}</td>
               <td class="text-end">{{ item.final_total }}</td>
             </tr>
@@ -100,4 +100,27 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.list-table {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.25);
+  padding: 25px;
+
+  .order-thead {
+    text-align: center;
+
+    .thead-qty {
+      width: 50px;
+    }
+  }
+
+  .order-lists {
+    text-align: center;
+
+    .list-title {
+      text-align: left;
+    }
+  }
+}
+</style>

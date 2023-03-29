@@ -1,22 +1,28 @@
 <template>
   <div class="products">
     <HomeLoading :isLoading="isLoading"></HomeLoading>
+    <!-- <TextModal></TextModal> -->
+    <CartBanner title="商品列表"
+      imgUrl="https://images.unsplash.com/photo-1557761830-8d36eedd1718?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      fontColor="#F7F1F0" boderColor="#F7F1F0"></CartBanner>
     <div class="container-xl">
       <div class="row main">
         <sidebar :sidebarList="sidebarList" :sidebarTarget="sidebarTarget" :isLoading="isLoading"
           @changeSidebar="changeSidebarHandler"></sidebar>
-        <ProductsItems :products="productsFilter" @addCartHandler="addCart" :loadingItem="status.loadingItem"></ProductsItems>
+        <ProductsItems :products="productsFilter" @addCartHandler="addCart" :loadingItem="status.loadingItem">
+        </ProductsItems>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import CartBanner from '@/components/Home/ImgBanner.vue'
 import Sidebar from '@/components/Home/ProductsList/Sidebar.vue'
 import ProductsItems from '@/components/Home/ProductsList/ProductsItems.vue'
 import emitter from '@/methods/emitter.js'
 export default {
-  components: { Sidebar, ProductsItems },
+  components: { Sidebar, ProductsItems, CartBanner },
   data () {
     return {
       sidebarTarget: '全部商品',
@@ -77,7 +83,7 @@ export default {
         this.sidebarTarget = this.$route.params.sidebarTarget + ''
       }
     },
-    addCart (productId, qty = 1) {
+    addCart ({ productTitle, productId }, qty = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       const payload = {
         data: {
@@ -85,6 +91,10 @@ export default {
           qty: qty
         }
       }
+      emitter.emit('push-message', {
+        style: 'success',
+        title: `${productTitle} 新增購物車成功`
+      })
       this.status.loadingItem = productId
       this.$http.post(api, payload)
         .then(res => {

@@ -15,6 +15,11 @@ const routes = [
     component: Home,
     children: [
       {
+        path: 'about',
+        name: 'About',
+        component: () => import('../views/Home/About.vue')
+      },
+      {
         path: 'productslist/:sidebarTarget',
         name: 'ProductsList',
         component: () => import('../views/Home/ProductsList.vue')

@@ -16,7 +16,7 @@
             <router-link class="nav-link" to="/">首頁</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">關於我們</router-link>
+            <router-link class="nav-link" to="/home/about">關於我們</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/home/productslist/lists">商品列表</router-link>
@@ -25,27 +25,26 @@
 
         <ul class="navbar-nav navbar-cart-md">
           <li class="nav-item">
-            <router-link class="nav-link" to="/"><i class="bi bi-bookmark"></i></router-link>
+            <router-link class="nav-link" to="/">
+              <span class="cart-text">
+                我的最愛
+              </span>
+              <i class="cart-icon bi bi-bookmark"></i>
+            </router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/home/Shoppingcart">
-              <i class="bi bi-cart cart-length-i">
-                <span class="cart-length"
-                  v-if="cartLength !== 0"
-                >{{ cartLength }}</span>
+              <span class="cart-text">
+                購物車
+              </span>
+              <i class="cart-icon bi bi-cart cart-length-i">
+                <span class="cart-length" v-if="cartLength !== 0">{{ cartLength }}</span>
               </i>
+
             </router-link>
           </li>
         </ul>
 
-        <!-- <ul class="navbar-nav navbar-cart-mobile">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/"><i class="bi bi-bookmark"></i> 收藏項目</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/"><i class="bi bi-cart"></i> 購物車</router-link>
-          </li>
-        </ul> -->
       </div>
 
     </div>
@@ -92,7 +91,6 @@ $aColorHover: black;
 $aBGCHover: white;
 
 .navbar {
-  font-weight: 900;
   font-size: 18px;
   color: $main-font-color;
   padding-top: 0;
@@ -100,7 +98,8 @@ $aBGCHover: white;
   background-color: $second-bgc;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 995;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .mr-auto {
@@ -139,13 +138,17 @@ $aBGCHover: white;
     color: $main-font-color;
   }
 }
-.bi-bookmark, bi-cart {
+
+.bi-bookmark,
+bi-cart {
   font-size: 1.2rem;
 }
+
 .cart-length-i {
   position: relative;
   font-size: 1.2rem;
-  .cart-length{
+
+  .cart-length {
     font-style: initial;
     font-size: 12px;
     border-radius: 5px;
@@ -157,4 +160,19 @@ $aBGCHover: white;
   }
 }
 
+.cart-text {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .cart-icon {
+    display: none;
+    color: white;
+  }
+
+  .cart-text {
+    display: block;
+  }
+
+}
 </style>

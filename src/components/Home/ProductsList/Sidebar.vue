@@ -38,7 +38,7 @@ export default {
   margin-top: 20px;
   height: 100%;
   position: sticky;
-  top: 64px;
+  top: 70px;
 
   .sidebar-lists {
     list-style: none;
@@ -49,7 +49,6 @@ export default {
     .sidebar-lists-item {
       letter-spacing: 5px;
       font-size: 20px;
-      font-weight: 900;
       margin-top: 1px;
       margin-bottom: 5px;
       padding: 5px;

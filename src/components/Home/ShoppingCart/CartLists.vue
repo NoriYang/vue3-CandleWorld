@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="table" v-if="true">
+    <table class="table main-table">
       <thead class="table-thead">
         <tr>
           <th class="thead-img">圖片</th>
@@ -45,7 +45,7 @@
               {{ $filters.currency(list.final_total) }}
             </td>
             <td class="list-del-btn">
-              <button class="btn del-btn" @click="delList(list.id)">
+              <button class="btn del-btn" @click="delList(list.id, list.product.title)">
                 <i class="bi bi-trash"></i>
               </button>
             </td>
@@ -54,8 +54,8 @@
         <slot v-else>
           <tr>
             <td colspan="6" class="Empty-cart">
-              購物車內暫無商品
-              <router-link to="/home/productslist/lists">前往購物</router-link>
+              <h2>購物車內無選購商品</h2>
+              <span>請前往<router-link to="/home/productslist/lists">商品列表</router-link></span>
             </td>
           </tr>
         </slot>
@@ -72,8 +72,8 @@ export default {
     }
   },
   methods: {
-    delList (id) {
-      this.$emit('delListHandler', id)
+    delList (id, title) {
+      this.$emit('delListHandler', { id, title })
     },
     updateCart (list, num) {
       list.qty += num
@@ -97,7 +97,6 @@ tr {
   box-sizing: border-box;
   font-size: 18px;
   vertical-align: middle;
-  font-weight: 600;
 
   .list-img {
     .img-wrap .img {
@@ -161,6 +160,7 @@ tr {
   .list-del-btn {
     padding: 0;
     width: 40px;
+
     .del-btn {
       padding: 5px 8px;
       border: 1px solid #dc3545;
@@ -176,8 +176,21 @@ tr {
 }
 
 .Empty-cart {
-  font-size: 2rem;
   padding: 50px;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  span {
+    font-size: 1.8rem;
+    font-weight: 900;
+
+    a {
+      text-decoration: none;
+    }
+  }
 }
 
 @media (max-width: 660px) {
@@ -209,6 +222,4 @@ tr {
   .product-list {
     font-size: 14px;
   }
-}
-
-</style>
+}</style>
