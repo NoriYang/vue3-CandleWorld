@@ -1,6 +1,10 @@
 <template>
+  <OrderBanner title="填寫訂單"
+    imgUrl="https://images.unsplash.com/photo-1602693875034-52c6b2e79785?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80"
+    fontColor="#F7F1F0" boderColor="#F7F1F0"></OrderBanner>
   <div class="main container">
     <HomeLoading :isLoading="isLoading"></HomeLoading>
+
     <div class="back-button">
       <router-link to="/home/Shoppingcart">
         <i class="bi bi-arrow-left"></i>
@@ -104,7 +108,9 @@
   </div>
 </template>
 <script>
+import OrderBanner from '@/components/Home/ImgBanner.vue'
 export default {
+  components: { OrderBanner },
   data () {
     return {
       form: {

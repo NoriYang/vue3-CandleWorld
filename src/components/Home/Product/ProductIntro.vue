@@ -14,13 +14,11 @@
     </div>
     <div class="product-des" v-if="product.description">
       <h2>產品規格</h2>
-      <!-- {{ product.description }} -->
       <div v-html="textDescriptionBR"></div>
     </div>
     <div class="product-content" v-if="product.content">
       <h2>產品說明</h2>
       <div v-html="textContentBR"></div>
-      <!-- {{ product.content }} -->
     </div>
     <div class="product-qty" v-if="product.unit">
       <span class="qty-text">數量：</span>
@@ -33,7 +31,10 @@
       </button>
     </div>
     <div class="product-intro-button">
-      <button @click="addToFavorite" class="btn btn-favorite">加入至最愛</button>
+      <button v-if="isFav === -1" @click="addToFavorite" class="btn btn-favorite">加入至最愛</button>
+      <button v-else @click="delFavorite" class="btn btn-danger like">
+        <i class="bi bi-suit-heart-fill"></i>
+      </button>
       <button @click="addToCart" class="btn btn-add-cart">加入購物車</button>
     </div>
   </div>
@@ -45,6 +46,9 @@ export default {
     product: {
       type: Object,
       default: () => { return {} }
+    },
+    isFav: {
+      type: Number
     }
   },
   data () {
@@ -72,6 +76,9 @@ export default {
     },
     addToFavorite () {
       this.$emit('addFavoriteHandler', this.product.id)
+    },
+    delFavorite () {
+      this.$emit('openDelModalHandler')
     }
   }
 }
@@ -172,12 +179,16 @@ export default {
       flex-grow: 1;
       letter-spacing: 3px;
       font-weight: 900;
-      color: $main-font-color;
     }
 
     .btn-favorite {
       margin-right: 30px;
       border: 3px solid $main-font-color;
+    }
+
+    .like {
+      margin-right: 30px;
+      font-size: 1.2rem;
     }
 
     .btn-add-cart {

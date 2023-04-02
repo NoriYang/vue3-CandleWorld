@@ -1,13 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home/Home.vue'
-// import Navbar from '@/components/Home/Navbar.vue'
-// import Footer from '@/components/Home/Footer.vue'
 const routes = [
   {
     path: '/',
     name: 'Index',
     component: () => import('../views/Home/Index.vue')
   },
+
   {
     path: '/home',
     name: 'Home',
@@ -15,19 +14,24 @@ const routes = [
     component: Home,
     children: [
       {
-        path: 'about',
-        name: 'About',
-        component: () => import('../views/Home/About.vue')
-      },
-      {
         path: 'productslist/:sidebarTarget',
         name: 'ProductsList',
         component: () => import('../views/Home/ProductsList.vue')
       },
       {
+        path: 'about',
+        name: 'About',
+        component: () => import('../views/Home/About.vue')
+      },
+      {
         path: 'product/:productId',
         name: 'product',
         component: () => import('../views/Home/Product.vue')
+      },
+      {
+        path: 'favorite',
+        name: 'Favorite',
+        component: () => import('@/views/Home/Favorite.vue')
       },
       {
         path: 'shoppingcart',
@@ -77,7 +81,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    return { left: 0, top: 0, behavior: 'smooth' }
+  }
 })
 
 export default router

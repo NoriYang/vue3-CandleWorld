@@ -9,23 +9,35 @@
           <div class="product-img" :style="{ backgroundImage: `url(${product.imageUrl})` }">
           </div>
         </div>
-        <ProductIntro :product="product" @addCartHandler="addCart"></ProductIntro>
+        <ProductIntro :product="product" @addCartHandler="addCart" :isFav="isFav" @openDelModalHandler="openDelModal"
+          @addFavoriteHandler="setFavorite"></ProductIntro>
       </div>
     </div>
+    <delModal ref="favDelModal" :delTitle="product.title" @removeFavItemHandler="removeFavItem"></delModal>
   </div>
 </template>
 <script>
+import delModal from '@/components/Home/Favorite/delModal.vue'
+import favoriteMixin from '@/mixins/favoriteMixin.js'
 import Breadcrumb from '@/components/Home/Product/Breadcrumb.vue'
 import ProductIntro from '@/components/Home/Product/ProductIntro.vue'
 import HomeLoading from '@/components/Content/HomeLoading.vue'
 import emitter from '@/methods/emitter.js'
 
 export default {
-  components: { Breadcrumb, ProductIntro, HomeLoading },
+  mixins: [favoriteMixin],
+  components: { Breadcrumb, ProductIntro, HomeLoading, delModal },
   data () {
     return {
       product: {},
       isLoading: false
+    }
+  },
+  computed: {
+    isFav () {
+      return this.FavoriteItems.findIndex((item) => {
+        return item === this.product.id
+      })
     }
   },
   methods: {
@@ -38,6 +50,8 @@ export default {
           this.isLoading = false
           if (res.data.success) {
             this.product = res.data.product
+            this.delProductId = this.product.id
+            this.favoriteInit()
           }
         })
     },
@@ -54,12 +68,28 @@ export default {
         .then(res => {
           this.isLoading = false
           if (res.data.success) {
+            emitter.emit('push-message', {
+              style: 'success',
+              title: `${this.product.title} 新增購物車成功`
+            })
             this.updateNavCartLength()
           }
         })
     },
     updateNavCartLength () {
       emitter.emit('updateCartLength')
+    },
+
+    openDelModal () {
+      this.$refs.favDelModal.showModal()
+    },
+    hideDelModal () {
+      this.$refs.favDelModal.hideModal()
+    },
+    removeFavItem () {
+      this.removeFavorite(this.delProductId)
+      this.hideDelModal()
+      this.delProductId = ''
     }
   },
   created () {

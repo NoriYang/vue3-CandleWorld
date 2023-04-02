@@ -36,7 +36,6 @@
   background-position: center center;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
   z-index: 1;
-  overflow: hidden;
 }
 
 .banner-content {
@@ -88,7 +87,7 @@
     }
   }
 
-  animation: moveIn 2s ease-in-out;
+  animation: moveIn 0.5s ease-in-out;
 }
 
 @media(max-width: 767px) {

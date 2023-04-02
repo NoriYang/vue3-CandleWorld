@@ -71,6 +71,7 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
+    window.scrollTo(0, 0)
   },
   methods: {
     handleScroll () {

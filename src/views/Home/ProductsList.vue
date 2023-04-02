@@ -1,7 +1,6 @@
 <template>
   <div class="products">
     <HomeLoading :isLoading="isLoading"></HomeLoading>
-    <!-- <TextModal></TextModal> -->
     <CartBanner title="商品列表"
       imgUrl="https://images.unsplash.com/photo-1557761830-8d36eedd1718?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
       fontColor="#F7F1F0" boderColor="#F7F1F0"></CartBanner>
@@ -9,27 +8,39 @@
       <div class="row main">
         <sidebar :sidebarList="sidebarList" :sidebarTarget="sidebarTarget" :isLoading="isLoading"
           @changeSidebar="changeSidebarHandler"></sidebar>
-        <ProductsItems :products="productsFilter" @addCartHandler="addCart" :loadingItem="status.loadingItem">
+        <ProductsItems :products="productsFilter" @addCartHandler="addCart" :loadingItem="status.loadingItem"
+          @setFavoriteHandler="setFavorite" @removeFavoriteHandler="removeFavItemButton" :FavoriteItems="FavoriteItems">
         </ProductsItems>
       </div>
     </div>
+    <delModal ref="favDelModal" :delTitle="delTitle" :delProductId="delProductId" @removeFavItemHandler="removeFavItem">
+    </delModal>
   </div>
 </template>
 
 <script>
+import delModal from '@/components/Home/Favorite/delModal.vue'
 import CartBanner from '@/components/Home/ImgBanner.vue'
 import Sidebar from '@/components/Home/ProductsList/Sidebar.vue'
 import ProductsItems from '@/components/Home/ProductsList/ProductsItems.vue'
+
 import emitter from '@/methods/emitter.js'
+import favoriteMixin from '@/mixins/favoriteMixin.js'
+
 export default {
-  components: { Sidebar, ProductsItems, CartBanner },
+  mixins: [favoriteMixin],
+  components: { Sidebar, ProductsItems, CartBanner, delModal },
   data () {
     return {
+      // --- mixins
+      // products: [],
+      // FavoriteItems: [],
+      // favoriteFilter: [],
+      // isLoading: false,
+      FavoriteItems: [],
       sidebarTarget: '全部商品',
-      products: [],
       sidebarList: [],
       pagination: {},
-      isLoading: false,
       status: {
         loadingItem: '' // 對應品項ID
       }
@@ -54,6 +65,7 @@ export default {
             this.pagination = res.data.pagination
             this.getSidebar()
             this.updateSibarTarget()
+            this.favoriteInit() // mixin
           }
         })
     },
@@ -70,12 +82,13 @@ export default {
     changeSidebarHandler (target) {
       this.sidebarTarget = target
       if (this.$route.params.sidebarTarget !== 'lists') {
+        this.isFavorite = false
         this.$router.replace('/home/productslist/lists')
       }
     },
     updateSibarTarget () {
       const target = this.$route.params.sidebarTarget
-      // 如果有分類
+      // 如果有分類 不是lists favorite
       const flag = this.sidebarList.some((item) => {
         return item === target
       })
@@ -91,14 +104,14 @@ export default {
           qty: qty
         }
       }
-      emitter.emit('push-message', {
-        style: 'success',
-        title: `${productTitle} 新增購物車成功`
-      })
       this.status.loadingItem = productId
       this.$http.post(api, payload)
         .then(res => {
           if (res.data.success) {
+            emitter.emit('push-message', {
+              style: 'success',
+              title: `${productTitle} 新增購物車成功`
+            })
             this.status.loadingItem = ''
             this.updateNavCartLength()
           }
@@ -106,10 +119,27 @@ export default {
     },
     updateNavCartLength () {
       emitter.emit('updateCartLength')
+    },
+    // fav del Modal
+    openDelModal () {
+      this.$refs.favDelModal.showModal()
+    },
+    hideDelModal () {
+      this.$refs.favDelModal.hideModal()
+    },
+    removeFavItemButton ({ productId, productTitle }) {
+      this.delProductId = productId
+      this.delTitle = productTitle
+      this.openDelModal()
+    },
+    removeFavItem () {
+      this.removeFavorite(this.delProductId)
+      this.hideDelModal()
     }
   },
   created () {
     this.getProducts()
+    console.log(this.FavoriteItems)
   }
 }
 </script>

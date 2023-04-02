@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <OrderBanner :title="!order.is_paid ? '訂單成立' : '感謝訂購'"
+    imgUrl="https://images.unsplash.com/photo-1617909517054-64d4958be1c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+    fontColor="#F7F1F0" boderColor="#F7F1F0"></OrderBanner>
+  <div class="container">
     <div class="my-5 row justify-content-center main-list">
       <form class="col-md-6 list-table" @submit.prevent="payOrder">
         <table class="table align-middle">
@@ -62,7 +65,9 @@
   </div>
 </template>
 <script>
+import OrderBanner from '@/components/Home/ImgBanner.vue'
 export default {
+  components: { OrderBanner },
   data () {
     return {
       order: {

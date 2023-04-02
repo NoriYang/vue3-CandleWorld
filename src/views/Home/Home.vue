@@ -19,13 +19,12 @@ export default {
       emitter
     }
   }
+
 }
 </script>
 
 <style lang="scss" scoped>
-.home {
-  height: 100%;
-}
+
 .main {
   min-height: 80dvh;
 }

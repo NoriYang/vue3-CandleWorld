@@ -12,24 +12,23 @@
 
       <div class="collapse navbar-collapse ul-wrap" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav navbar-cart-md">
           <li class="nav-item">
             <router-link class="nav-link" to="/">首頁</router-link>
           </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/home/about">關於我們</router-link>
+          <li class="nav-item" @click="test">
+            <a class="nav-link" @click="toAbout">關於我們</a>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/home/productslist/lists">商品列表</router-link>
           </li>
-        </ul>
-
-        <ul class="navbar-nav navbar-cart-md">
           <li class="nav-item">
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" to="/home/favorite">
               <span class="cart-text">
                 我的最愛
               </span>
-              <i class="cart-icon bi bi-bookmark"></i>
+              <i class="cart-icon bi bi-bookmark-fill"></i>
             </router-link>
           </li>
           <li class="nav-item">
@@ -72,6 +71,12 @@ export default {
             this.cartLength = length
           }
         })
+    },
+    goFavorite () {
+      this.$router.replace('/home/productslist/favorite')
+    },
+    toAbout () {
+      this.$router.replace('/home/About')
     }
   },
   created () {
