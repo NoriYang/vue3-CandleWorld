@@ -23,7 +23,6 @@ import delModal from '@/components/Home/Favorite/delModal.vue'
 import CartBanner from '@/components/Home/ImgBanner.vue'
 import Sidebar from '@/components/Home/ProductsList/Sidebar.vue'
 import ProductsItems from '@/components/Home/ProductsList/ProductsItems.vue'
-
 import emitter from '@/methods/emitter.js'
 import favoriteMixin from '@/mixins/favoriteMixin.js'
 
@@ -32,12 +31,10 @@ export default {
   components: { Sidebar, ProductsItems, CartBanner, delModal },
   data () {
     return {
-      // --- mixins
-      // products: [],
-      // FavoriteItems: [],
-      // favoriteFilter: [],
-      // isLoading: false,
+      products: [],
       FavoriteItems: [],
+      favoriteFilter: [],
+      isLoading: false,
       sidebarTarget: '全部商品',
       sidebarList: [],
       pagination: {},
@@ -139,7 +136,6 @@ export default {
   },
   created () {
     this.getProducts()
-    console.log(this.FavoriteItems)
   }
 }
 </script>

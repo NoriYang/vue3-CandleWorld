@@ -4,17 +4,17 @@
       <div class="text-content">
         <div class="title">CANDLE WORLD</div>
         <div class="text">
-          <p class="text-one">使用最天然的原材料</p>
-          <p class="text-one">任何地點、無時無刻</p>
-          <p class="text-one">讓您都能享受大自然的擁抱</p>
-          <p class="text-two">因近期疫情導致人心惶惶</p>
-          <p class="text-two">希望我們的產品能使你的心情放鬆</p>
-          <p class="text-two">帶給你美好的一天</p>
+          <p>使用最天然的原材料</p>
+          <p>任何地點、無時無刻</p>
+          <p>讓您都能享受大自然的擁抱</p>
+          <p>因近期疫情導致人心惶惶</p>
+          <p>希望我們的產品能使你的心情放鬆</p>
+          <p>帶給你美好的一天</p>
         </div>
       </div>
     </div>
-    <div class="col-12 row about-card-wrap">
 
+    <div class="col-12 row about-card-wrap">
       <div class="col-12 col-md-4">
         <div class="about-card">
           <div class="about-card-icon">
@@ -36,7 +36,7 @@
           <div class="about-card-title">注意事項</div>
           <div class="about-card-text">
             <span>我們不會主動請你提供資料</span>
-            <span>若你接到可疑簡訊、電話</span>
+            <span>若接到可疑簡訊、電話</span>
             <span>請撥打165反詐騙</span>
           </div>
         </div>
@@ -53,7 +53,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="col-12">
@@ -88,17 +87,19 @@ export default {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
-  background-color: rgba(255,255,255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   padding: 40px 0px;
+
   .title {
     font-weight: 900;
     font-size: 3rem;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.25);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.25);
   }
 
   .text {
@@ -119,15 +120,16 @@ export default {
 .about-card {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
-  background-color: rgba(255,255,255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.25);
   min-height: 350px;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
+
   .about-card-icon {
     font-size: 5rem;
   }
@@ -145,6 +147,7 @@ export default {
     span {
       margin-top: 10px;
       letter-spacing: 3px;
+      text-align: center;
     }
   }
 }
@@ -156,4 +159,70 @@ export default {
     width: 100%;
   }
 }
-</style>
+
+@media (max-width: 768px) {
+  .text-content {
+    .title {
+      font-weight: 900;
+      font-size: 2.4rem;
+    }
+
+    .text {
+      font-size: 1.2rem
+    }
+  }
+
+  .about-card {
+    min-height: 300px;
+
+    .about-card-icon {
+      font-size: 4rem;
+    }
+
+    .about-card-title {
+      font-size: 2rem;
+    }
+
+    .about-card-text {
+      span {
+        margin-top: 10px;
+        letter-spacing: 3px;
+        font-size: 1rem;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 320px) {
+  .text-content {
+    .title {
+      font-weight: 900;
+      font-size: 2rem;
+    }
+
+    .text {
+      font-size: 14px;
+    }
+  }
+
+  .about-card {
+    min-height: 300px;
+
+    .about-card-icon {
+      font-size: 4rem;
+    }
+
+    .about-card-title {
+      font-size: 2rem;
+    }
+
+    .about-card-text {
+      span {
+        margin-top: 10px;
+        letter-spacing: 3px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}</style>

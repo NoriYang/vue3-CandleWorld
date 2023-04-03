@@ -8,6 +8,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import AboutContent from '@/components/Home/About/Content.vue'
 import CartBanner from '@/components/Home/ImgBanner.vue'

@@ -17,8 +17,8 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/">首頁</router-link>
           </li>
-          <li class="nav-item" @click="test">
-            <a class="nav-link" @click="toAbout">關於我們</a>
+          <li class="nav-item">
+            <a class="nav-link" to="/home/about" @click="goAbout">關於我們</a>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/home/productslist/lists">商品列表</router-link>
@@ -34,7 +34,7 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/home/Shoppingcart">
               <span class="cart-text">
-                購物車
+                購物車 <span class="mobile-cart-length" v-if="cartLength !== 0">{{ cartLength }}</span>
               </span>
               <i class="cart-icon bi bi-cart cart-length-i">
                 <span class="cart-length" v-if="cartLength !== 0">{{ cartLength }}</span>
@@ -71,12 +71,6 @@ export default {
             this.cartLength = length
           }
         })
-    },
-    goFavorite () {
-      this.$router.replace('/home/productslist/favorite')
-    },
-    toAbout () {
-      this.$router.replace('/home/About')
     }
   },
   created () {
@@ -148,7 +142,14 @@ $aBGCHover: white;
 bi-cart {
   font-size: 1.2rem;
 }
-
+.mobile-cart-length {
+  background-color: red;
+  font-weight: 900;
+  border-radius: 5px;
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+}
 .cart-length-i {
   position: relative;
   font-size: 1.2rem;

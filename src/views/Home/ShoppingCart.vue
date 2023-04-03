@@ -15,7 +15,7 @@
           </CartListsMobile>
         </div>
         <div class="col-12 col-md-12 col-lg-3">
-          <CartInfo :total="total" :cartLength="cartLists.length" @setCouponHandler="setCoupon"
+          <CartInfo :total="total" :cartLength="getCartsLength" @setCouponHandler="setCoupon"
             @cleanCartHandler="openDelListModal"></CartInfo>
         </div>
       </div>
@@ -43,6 +43,13 @@ export default {
       couponCode: '',
       delID: '',
       delTitle: ''
+    }
+  },
+  computed: {
+    getCartsLength () {
+      return this.cartLists.reduce((acc, cur) => {
+        return acc + cur.qty
+      }, 0)
     }
   },
   methods: {
