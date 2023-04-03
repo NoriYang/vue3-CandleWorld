@@ -75,6 +75,7 @@ export default {
       this.$emit('addCartHandler', this.qty)
     },
     addToFavorite () {
+      this.$emit('openAlertModalHandler')
       this.$emit('addFavoriteHandler', this.product.id)
     },
     delFavorite () {

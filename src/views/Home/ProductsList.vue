@@ -1,5 +1,6 @@
 <template>
   <div class="products">
+    <AlertModal ref="alertModal"></AlertModal>
     <HomeLoading :isLoading="isLoading"></HomeLoading>
     <CartBanner title="商品列表"
       imgUrl="https://images.unsplash.com/photo-1557761830-8d36eedd1718?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
@@ -9,7 +10,7 @@
         <sidebar :sidebarList="sidebarList" :sidebarTarget="sidebarTarget" :isLoading="isLoading"
           @changeSidebar="changeSidebarHandler"></sidebar>
         <ProductsItems :products="productsFilter" @addCartHandler="addCart" :loadingItem="status.loadingItem"
-          @setFavoriteHandler="setFavorite" @removeFavoriteHandler="removeFavItemButton" :FavoriteItems="FavoriteItems">
+          @setFavoriteHandler="setFavorite" @removeFavoriteHandler="removeFavItemButton" :FavoriteItems="FavoriteItems" @openAlertModalHandler="openAlertModal">
         </ProductsItems>
       </div>
     </div>
@@ -19,7 +20,9 @@
 </template>
 
 <script>
+import AlertModal from '@/components/Home/AlertModal.vue'
 import delModal from '@/components/Home/Favorite/delModal.vue'
+
 import CartBanner from '@/components/Home/ImgBanner.vue'
 import Sidebar from '@/components/Home/ProductsList/Sidebar.vue'
 import ProductsItems from '@/components/Home/ProductsList/ProductsItems.vue'
@@ -28,7 +31,7 @@ import favoriteMixin from '@/mixins/favoriteMixin.js'
 
 export default {
   mixins: [favoriteMixin],
-  components: { Sidebar, ProductsItems, CartBanner, delModal },
+  components: { Sidebar, ProductsItems, CartBanner, delModal, AlertModal },
   data () {
     return {
       products: [],
@@ -132,6 +135,9 @@ export default {
     removeFavItem () {
       this.removeFavorite(this.delProductId)
       this.hideDelModal()
+    },
+    openAlertModal () {
+      this.$refs.alertModal.showModal()
     }
   },
   created () {

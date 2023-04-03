@@ -1,6 +1,7 @@
 <template>
   <div class="product">
     <HomeLoading :isLoading="isLoading"></HomeLoading>
+    <AlertModal ref="alertModal"></AlertModal>
     <div class="container">
       <Breadcrumb :productTitle="product.title" :productCategory="product.category"></Breadcrumb>
       <div class="row product-main">
@@ -10,13 +11,14 @@
           </div>
         </div>
         <ProductIntro :product="product" @addCartHandler="addCart" :isFav="isFav" @openDelModalHandler="openDelModal"
-          @addFavoriteHandler="setFavorite"></ProductIntro>
+          @addFavoriteHandler="setFavorite" @openAlertModalHandler="openAlertModal"></ProductIntro>
       </div>
     </div>
     <delModal ref="favDelModal" :delTitle="product.title" @removeFavItemHandler="removeFavItem"></delModal>
   </div>
 </template>
 <script>
+import AlertModal from '@/components/Home/AlertModal.vue'
 import delModal from '@/components/Home/Favorite/delModal.vue'
 import favoriteMixin from '@/mixins/favoriteMixin.js'
 import Breadcrumb from '@/components/Home/Product/Breadcrumb.vue'
@@ -26,7 +28,7 @@ import emitter from '@/methods/emitter.js'
 
 export default {
   mixins: [favoriteMixin],
-  components: { Breadcrumb, ProductIntro, HomeLoading, delModal },
+  components: { Breadcrumb, ProductIntro, HomeLoading, delModal, AlertModal },
   data () {
     return {
       product: {},
@@ -79,7 +81,9 @@ export default {
     updateNavCartLength () {
       emitter.emit('updateCartLength')
     },
-
+    openAlertModal () {
+      this.$refs.alertModal.showModal()
+    },
     openDelModal () {
       this.$refs.favDelModal.showModal()
     },
