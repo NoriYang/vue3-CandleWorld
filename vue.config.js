@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: ' vue3-final-project',
   chainWebpack: config => {
     config
       .plugin('html')
