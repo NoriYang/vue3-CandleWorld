@@ -18,7 +18,7 @@
             <router-link class="nav-link" to="/">首頁</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" to="/home/about" @click="goAbout">關於我們</a>
+            <router-link class="nav-link" to="/home/about">關於我們</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/home/productslist/lists">商品列表</router-link>

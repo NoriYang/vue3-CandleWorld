@@ -47,6 +47,9 @@ export default {
           this.isLoading = false
           if (res.data.success) {
             this.cartLists = res.data.data.carts
+            if (this.cartLists.length === 0) {
+              this.$router.replace('/home/productslist/lists')
+            }
             this.getPrice()
           }
         })
