@@ -1,30 +1,45 @@
 <template>
   <nav class="navbar navbar-expand-md">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <img class="logo" src="@/assets/logo.png" alt="logo">
+      <a class="navbar-brand"
+        href="#">
+        <img class="logo"
+          src="@/assets/logo.png"
+          alt="logo">
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse ul-wrap" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse ul-wrap"
+        id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
         <ul class="navbar-nav navbar-cart-md">
           <li class="nav-item">
-            <router-link class="nav-link" to="/">首頁</router-link>
+            <router-link class="nav-link"
+              to="/">首頁</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/home/about">關於我們</router-link>
+            <router-link class="nav-link"
+              to="/home/about">
+              關於我們
+            </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/home/productslist/lists">商品列表</router-link>
+            <router-link class="nav-link"
+              to="/home/productslist/lists">商品列表</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/home/favorite">
+            <router-link class="nav-link"
+              to="/home/favorite">
               <span class="cart-text">
                 我的最愛
               </span>
@@ -32,14 +47,16 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/home/Shoppingcart">
+            <router-link class="nav-link"
+              to="/home/Shoppingcart">
               <span class="cart-text">
-                購物車 <span class="mobile-cart-length" v-if="cartLength !== 0">{{ cartLength }}</span>
+                購物車 <span class="mobile-cart-length"
+                  v-if="cartLength !== 0">{{ cartLength }}</span>
               </span>
               <i class="cart-icon bi bi-cart cart-length-i">
-                <span class="cart-length" v-if="cartLength !== 0">{{ cartLength }}</span>
+                <span class="cart-length"
+                  v-if="cartLength !== 0">{{ cartLength }}</span>
               </i>
-
             </router-link>
           </li>
         </ul>
@@ -142,6 +159,7 @@ $aBGCHover: white;
 bi-cart {
   font-size: 1.2rem;
 }
+
 .mobile-cart-length {
   background-color: red;
   font-weight: 900;
@@ -150,6 +168,7 @@ bi-cart {
   padding-left: 5px;
   padding-right: 5px;
 }
+
 .cart-length-i {
   position: relative;
   font-size: 1.2rem;

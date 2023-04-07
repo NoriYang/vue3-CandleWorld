@@ -3,10 +3,26 @@ import Home from '../views/Home/Home.vue'
 const routes = [
   {
     path: '/',
-    name: 'Index',
-    component: () => import('../views/Home/Index.vue')
+    name: 'HomeView',
+    component: () => import('../views/Frontend/HomeView.vue'),
+    children: [
+      {
+        path: '',
+        name: 'FrontendIndex',
+        component: () => import('../views/Frontend/Index.vue')
+      },
+      {
+        path: 'about',
+        name: 'FrontendAbout',
+        component: () => import('../views/Frontend/About.vue')
+      },
+      {
+        path: 'productslist/:sidebarTarget',
+        name: 'FrontendProductLists',
+        component: () => import('../views/Frontend/ProductLists.vue')
+      }
+    ]
   },
-
   {
     path: '/home',
     name: 'Home',
@@ -76,6 +92,10 @@ const routes = [
         component: () => import('../views/Dashboard/Coupons.vue')
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
   }
 ]
 

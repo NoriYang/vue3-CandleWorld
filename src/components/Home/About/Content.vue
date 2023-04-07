@@ -13,7 +13,9 @@
         </div>
       </div>
     </div>
-
+    <div class="col-12">
+      <Intro></Intro>
+    </div>
     <div class="col-12 row about-card-wrap">
       <div class="col-12 col-md-4">
         <div class="about-card">
@@ -56,6 +58,7 @@
     </div>
 
     <div class="col-12">
+
       <div class="location-wrap">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d903.7581802931063!2d121.56423589919741!3d25.032963599999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abe10238cb87%3A0x8c0ca929f18c0d23!2z5Y-w5YyXMTAx!5e0!3m2!1szh-TW!2stw!4v1680172152264!5m2!1szh-TW!2stw"
@@ -66,7 +69,9 @@
   </div>
 </template>
 <script>
+import Intro from '@/components/Home/Index/Intro.vue'
 export default {
+  components: { Intro },
   mounted () {
     window.scrollTo(0, 0)
   }
@@ -225,4 +230,5 @@ export default {
       }
     }
   }
-}</style>
+}
+</style>

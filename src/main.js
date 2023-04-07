@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 // ----- bootstrap -----
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min'
 // ----- Loading -----
 import Loading from 'vue3-loading-overlay'
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
