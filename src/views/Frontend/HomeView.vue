@@ -1,11 +1,21 @@
 <template>
   <FrontendNavbar></FrontendNavbar>
   <router-view></router-view>
+  <FrontendFooter></FrontendFooter>
+  <ToastMessage></ToastMessage>
 </template>
 <script>
 import FrontendNavbar from '@/components/Frontend/HomeView/FrontendNavbar.vue'
+import FrontendFooter from '@/components/Frontend/HomeView/FrontendFooter.vue'
+import ToastMessage from '@/components/Frontend/Content/ToastMessages.vue'
+import emitter from '@/methods/emitter'
 export default {
-  components: { FrontendNavbar }
+  components: { FrontendNavbar, FrontendFooter, ToastMessage },
+  provide () {
+    return {
+      emitter
+    }
+  }
 }
 </script>
 <style lang="scss"></style>

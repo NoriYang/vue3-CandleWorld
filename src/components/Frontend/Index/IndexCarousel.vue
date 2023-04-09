@@ -19,25 +19,24 @@
         aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active"
-        >
-        <img :src="require('@/assets/img/Index/Carousel_2.jpg')"
+      <div class="carousel-item active">
+        <img :src="require('@/assets/img/Index/Carousel_5.jpg')"
           class="d-block"
           alt="RecordBanner" />
         <div class="carousel-caption first d-md-block">
           <h2 class="carousel-text">依照自己的喜好<br />創造你最喜歡的居家環境氛圍</h2>
-          <router-link to="/productlists"
-            class="custom-btn btn btn-outline-light rounded-pill px-5">前往購買</router-link>
+          <router-link to="/productslist/all"
+            class="btn btn-outline-light rounded-pill px-5">前往購買</router-link>
         </div>
       </div>
       <div class="carousel-item">
-        <img :src="require('@/assets/img/Index/Carousel_5.jpg')"
+        <img :src="require('@/assets/img/Index/Carousel_2.jpg')"
           class="d-block"
           alt="RecordBanner" />
         <div class="carousel-caption second d-md-block dark">
           <h2 class="carousel-text small-text">跟著最自然的味道走<br />帶領你進入大自然</h2>
-          <router-link to="/productlists"
-            class="custom-btn btn btn-outline-light rounded-pill px-5">前往購買</router-link>
+          <router-link to="/productslist/all"
+            class="btn btn-outline-light rounded-pill px-5">前往購買</router-link>
         </div>
       </div>
       <div class="carousel-item">
@@ -46,8 +45,8 @@
           alt="RecordBanner" />
         <div class="carousel-caption third d-md-block dark">
           <h2 class="carousel-text small-text">無時無刻、任何空間<br />只要閉上眼<br />彷彿身在大自然</h2>
-          <router-link to="/productlists"
-            class="custom-btn btn btn-outline-light rounded-pill px-5">前往購買</router-link>
+          <router-link to="/productslist/all"
+            class="btn btn-outline-light rounded-pill px-5">前往購買</router-link>
         </div>
       </div>
     </div>
@@ -76,6 +75,9 @@ export default {
     return {
 
     }
+  },
+  methods: {
+
   },
   created () {
 

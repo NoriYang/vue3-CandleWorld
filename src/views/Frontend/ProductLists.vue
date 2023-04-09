@@ -31,11 +31,9 @@
 </template>
 
 <script>
-import AlertModal from '@/components/Home/AlertModal.vue'
-import delModal from '@/components/Home/Favorite/delModal.vue'
-
-import CartBanner from '@/components/Home/ImgBanner.vue'
-
+import delModal from '@/components/Frontend/Favorite/delModal.vue'
+import AlertModal from '@/components/Frontend/Content/AlertModal.vue'
+import CartBanner from '@/components/Frontend/Content/ImgBanner.vue'
 import Sidebar from '@/components/Frontend/ProductsList/Sidebar.vue'
 import ProductsItems from '@/components/Frontend/ProductsList/ProductsItems.vue'
 

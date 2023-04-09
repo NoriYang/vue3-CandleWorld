@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home/Home.vue'
 const routes = [
   {
     path: '/',
@@ -20,52 +19,77 @@ const routes = [
         path: 'productslist/:sidebarTarget',
         name: 'FrontendProductLists',
         component: () => import('../views/Frontend/ProductLists.vue')
-      }
-    ]
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    redirect: '/home/productslist',
-    component: Home,
-    children: [
-      {
-        path: 'productslist/:sidebarTarget',
-        name: 'ProductsList',
-        component: () => import('../views/Home/ProductsList.vue')
-      },
-      {
-        path: 'about',
-        name: 'About',
-        component: () => import('../views/Home/About.vue')
       },
       {
         path: 'product/:productId',
-        name: 'product',
-        component: () => import('../views/Home/Product.vue')
+        name: 'FrontendProduct',
+        component: () => import('../views/Frontend/Product.vue')
       },
       {
         path: 'favorite',
-        name: 'Favorite',
-        component: () => import('@/views/Home/Favorite.vue')
+        name: 'FrontendFavorite',
+        component: () => import('@/views/Frontend/Favorite.vue')
       },
       {
         path: 'shoppingcart',
-        name: 'shoppingcart',
-        component: () => import('@/views/Home/ShoppingCart.vue')
+        name: 'FrontendShoppingcart',
+        component: () => import('@/views/Frontend/ShoppingCart.vue')
       },
       {
         path: 'checkorder',
-        name: 'CheckOrder',
-        component: () => import('@/views/Home/CheckOrder.vue')
+        name: 'FrontendCheckOrder',
+        component: () => import('@/views/Frontend/CheckOrder.vue')
       },
       {
         path: 'checkout/:orderId',
-        name: 'CheckOut',
-        component: () => import('@/views/Home/CheckOut.vue')
+        name: 'FrontendCheckOut',
+        component: () => import('@/views/Frontend/CheckOut.vue')
       }
     ]
   },
+  // {
+  //   path: '/home',
+  //   name: 'Home',
+  //   redirect: '/home/productslist',
+  //   component: Home,
+  //   children: [
+  //     {
+  //       path: 'productslist/:sidebarTarget',
+  //       name: 'ProductsList',
+  //       component: () => import('../views/Home/ProductsList.vue')
+  //     },
+  //     {
+  //       path: 'about',
+  //       name: 'About',
+  //       component: () => import('../views/Home/About.vue')
+  //     },
+  //     {
+  //       path: 'product/:productId',
+  //       name: 'product',
+  //       component: () => import('../views/Home/Product.vue')
+  //     },
+  //     {
+  //       path: 'favorite',
+  //       name: 'Favorite',
+  //       component: () => import('@/views/Home/Favorite.vue')
+  //     },
+  //     {
+  //       path: 'shoppingcart',
+  //       name: 'shoppingcart',
+  //       component: () => import('@/views/Home/ShoppingCart.vue')
+  //     },
+  //     {
+  //       path: 'checkorder',
+  //       name: 'CheckOrder',
+  //       component: () => import('@/views/Home/CheckOrder.vue')
+  //     },
+  //     {
+  //       path: 'checkout/:orderId',
+  //       name: 'CheckOut',
+  //       component: () => import('@/views/Home/CheckOut.vue')
+  //     }
+  //   ]
+  // },
   {
     path: '/login',
     name: 'login',
