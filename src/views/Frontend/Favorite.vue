@@ -2,7 +2,8 @@
   <div>
     <FavoriteBanner title="我的最愛"
       imgUrl="https://images.unsplash.com/photo-1596568840418-5f4db2029de0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-      fontColor="#F7F1F0" boderColor="#F7F1F0">
+      fontColor="#F7F1F0"
+      boderColor="#F7F1F0">
     </FavoriteBanner>
     <HomeLoading :isLoading="isLoading"></HomeLoading>
     <div class="container main-favorite">
@@ -13,15 +14,20 @@
             商品列表
           </router-link>
         </div>
-        <button class="clean-button btn btn-danger" @click="cleanAllButton"
+        <button class="clean-button btn btn-danger"
+          @click="cleanAllButton"
           :disabled="FavoriteItems.length === 0">清空我的最愛</button>
       </div>
-      <FavoriteItems :loadingItem="status.loadingItem" :products="favoriteFilter"
-        @removeFavoriteHandler="removeFavItemButton" @addCartHandler="addCart">
+      <FavoriteItems :loadingItem="status.loadingItem"
+        :products="favoriteFilter"
+        @removeFavoriteHandler="removeFavItemButton"
+        @addCartHandler="addCart">
       </FavoriteItems>
     </div>
-    <delModal ref="favDelModal" :delTitle="delTitle" @cleanAllFavItemsHandler="cleanAllFavItems"
-      @removeFavItemHandler="removeFavItem"></delModal>
+    <delModal ref="favDelModal"
+      :delTitle="delTitle"
+      @cleanAllFavItemsHandler="cleanAllFavItems"
+      @removeFavItemHandler="removeFavItem(delTitle)"></delModal>
   </div>
 </template>
 <script>
@@ -66,14 +72,15 @@ export default {
           qty: qty
         }
       }
-      emitter.emit('push-message', {
-        style: 'success',
-        title: `${productTitle} 新增購物車成功`
-      })
       this.status.loadingItem = productId
       this.$http.post(api, payload)
         .then(res => {
           if (res.data.success) {
+            emitter.emit('push-message', {
+              style: 'success',
+              title: `${productTitle}`,
+              actionText: '新增至購物車'
+            })
             this.status.loadingItem = ''
             this.updateNavCartLength()
           }
@@ -101,9 +108,14 @@ export default {
       this.cleanFavoriteAll()
       this.hideDelModal()
     },
-    removeFavItem () {
+    removeFavItem (title) {
       this.removeFavorite(this.delProductId)
       this.hideDelModal()
+      emitter.emit('push-message', {
+        style: 'success',
+        title: `${title}`,
+        actionText: '取消關注成功'
+      })
     }
   },
   created () {
@@ -115,6 +127,7 @@ export default {
 .main-favorite {
   min-height: 500px;
 }
+
 .favorite-top-buttons {
   display: flex;
   align-items: center;

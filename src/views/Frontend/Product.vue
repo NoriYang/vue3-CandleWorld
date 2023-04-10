@@ -81,7 +81,8 @@ export default {
           if (res.data.success) {
             emitter.emit('push-message', {
               style: 'success',
-              title: `${this.product.title} 新增購物車成功`
+              title: `${this.product.title}`,
+              actionText: '新增至購物車'
             })
             this.updateNavCartLength()
           }
@@ -103,6 +104,11 @@ export default {
       this.removeFavorite(this.delProductId)
       this.hideDelModal()
       this.delProductId = ''
+      emitter.emit('push-message', {
+        style: 'success',
+        title: `${this.product.title}`,
+        actionText: '取消關注成功'
+      })
     }
   },
   created () {
@@ -145,4 +151,5 @@ export default {
       height: 340px;
     }
   }
-}</style>
+}
+</style>

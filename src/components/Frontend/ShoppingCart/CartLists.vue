@@ -16,7 +16,7 @@
           <tr v-for="list of cartLists" :key="list.id" class="product-list">
             <td class="list-img">
               <div class="img-wrap">
-                <img class="img" :src="list.product.imageUrl" alt="">
+                <img class="img" :src="list.product.imageUrl" alt="商品圖片">
               </div>
             </td>
             <td class="list-title">
@@ -42,7 +42,7 @@
             </td>
 
             <td class="list-product-price-count">
-              {{ $filters.currency(list.final_total) }}
+              {{ $filters.currency(list.total) }}
             </td>
             <td class="list-del-btn">
               <button class="btn del-btn" @click="delList(list.id, list.product.title)">
@@ -84,7 +84,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main-table {
-  min-height: 350px;
+  min-height: 250px;
 }
 td,
 tr {

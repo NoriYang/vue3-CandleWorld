@@ -44,52 +44,19 @@ const routes = [
         path: 'checkout/:orderId',
         name: 'FrontendCheckOut',
         component: () => import('@/views/Frontend/CheckOut.vue')
+      },
+      {
+        path: 'searchorder',
+        name: 'FrontendSearchOrder',
+        component: () => import('@/views/Frontend/SearchOrder.vue')
+      },
+      {
+        path: 'qanda',
+        name: 'Frontendqanda',
+        component: () => import('@/views/Frontend/QandA.vue')
       }
     ]
   },
-  // {
-  //   path: '/home',
-  //   name: 'Home',
-  //   redirect: '/home/productslist',
-  //   component: Home,
-  //   children: [
-  //     {
-  //       path: 'productslist/:sidebarTarget',
-  //       name: 'ProductsList',
-  //       component: () => import('../views/Home/ProductsList.vue')
-  //     },
-  //     {
-  //       path: 'about',
-  //       name: 'About',
-  //       component: () => import('../views/Home/About.vue')
-  //     },
-  //     {
-  //       path: 'product/:productId',
-  //       name: 'product',
-  //       component: () => import('../views/Home/Product.vue')
-  //     },
-  //     {
-  //       path: 'favorite',
-  //       name: 'Favorite',
-  //       component: () => import('@/views/Home/Favorite.vue')
-  //     },
-  //     {
-  //       path: 'shoppingcart',
-  //       name: 'shoppingcart',
-  //       component: () => import('@/views/Home/ShoppingCart.vue')
-  //     },
-  //     {
-  //       path: 'checkorder',
-  //       name: 'CheckOrder',
-  //       component: () => import('@/views/Home/CheckOrder.vue')
-  //     },
-  //     {
-  //       path: 'checkout/:orderId',
-  //       name: 'CheckOut',
-  //       component: () => import('@/views/Home/CheckOut.vue')
-  //     }
-  //   ]
-  // },
   {
     path: '/login',
     name: 'login',

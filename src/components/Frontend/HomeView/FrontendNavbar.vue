@@ -28,11 +28,11 @@
             </li>
             <li class="nav-item">
               <router-link class="nav-link"
-                to="/">訂單查詢</router-link>
+                to="/searchorder">訂單查詢</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link"
-                to="/">常見問題</router-link>
+                to="/qanda">常見問題</router-link>
             </li>
           </ul>
         </div>
@@ -91,12 +91,12 @@
             <li class="nav-item">
               <router-link class="nav-link menu-item"
                 @click.prevent="showOffcanvasMenu"
-                to="/">訂單查詢</router-link>
+                to="/searchorder">訂單查詢</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link menu-item"
                 @click.prevent="showOffcanvasMenu"
-                to="/">常見問題</router-link>
+                to="/qanda">常見問題</router-link>
             </li>
           </ul>
         </div>

@@ -83,16 +83,22 @@ export default {
     delCartList () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${this.delID}`
       this.isLoading = true
+      console.log(this.delTitle)
       this.$http.delete(api)
         .then(res => {
           this.isLoading = false
           if (res.data.success) {
             this.getCart()
             this.updateNavCartLength()
+            emitter.emit('push-message', {
+              style: 'success',
+              title: `${this.delTitle}`,
+              actionText: '刪除成功'
+            })
+            this.delID = ''
+            this.delTitle = ''
           }
         })
-      this.delID = ''
-      this.delTitle = ''
       this.$refs.WarnModal.hideModal()
     },
     goCartForm () {
@@ -110,6 +116,11 @@ export default {
       this.$http.put(api, payload)
         .then(res => {
           this.isLoading = false
+          emitter.emit('push-message', {
+            style: 'success',
+            title: `${list.product.title}`,
+            actionText: '更新購物車成功'
+          })
           this.getCart()
           this.updateNavCartLength()
         })

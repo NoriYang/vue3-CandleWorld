@@ -36,22 +36,22 @@
             <h2 class="list-title">關於本站</h2>
             <ul>
               <li>
-                <router-link to="/">
+                <router-link to="/about">
                   關於我們
                 </router-link>
               </li>
               <li>
-                <router-link to="/">
+                <router-link to="/productslist/lists">
                   香氛蠟燭
                 </router-link>
               </li>
               <li>
-                <router-link to="/">
+                <router-link to="/searchorder">
                   訂單查詢
                 </router-link>
               </li>
               <li>
-                <router-link to="/">
+                <router-link to="/qanda">
                   常見問題
                 </router-link>
               </li>

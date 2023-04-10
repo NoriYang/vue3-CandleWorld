@@ -12,12 +12,6 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          是否刪除
-          <strong class="text-danger">
-            {{ delTitle }}
-          </strong> ?
-        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消
           </button>

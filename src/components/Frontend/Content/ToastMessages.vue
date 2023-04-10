@@ -1,5 +1,5 @@
 <template>
-  <div class="toast-container position-fixed p-5 top-0 end-0">
+  <div class="toast-container toast-main">
     <Toast v-for="(msg, key) in messages" :key="key" :msg="msg" />
   </div>
 </template>
@@ -17,9 +17,17 @@ export default {
   },
   mounted () {
     this.emitter.on('push-message', (message) => {
-      const { style = 'success', title, content } = message
-      this.messages.push({ style, title, content })
+      const { style = 'success', title, actionText, content } = message
+      this.messages.push({ style, title, actionText, content })
     })
   }
 }
 </script>
+<style lang="scss" scoped>
+.toast-main {
+  position: fixed;
+  top: 80px;
+  right: 0;
+}
+
+</style>

@@ -31,7 +31,7 @@
               </button>
             </div>
             <div class="card-total-price">
-              $ {{ $filters.currency(cart.final_total) }}
+              $ {{ $filters.currency(cart.total) }}
             </div>
           </div>
           <div class="clean-btn">

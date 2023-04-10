@@ -25,7 +25,7 @@
     <delModal ref="favDelModal"
       :delTitle="delTitle"
       :delProductId="delProductId"
-      @removeFavItemHandler="removeFavItem">
+      @removeFavItemHandler="removeFavItem(delTitle)">
     </delModal>
   </div>
 </template>
@@ -121,7 +121,8 @@ export default {
           if (res.data.success) {
             emitter.emit('push-message', {
               style: 'success',
-              title: `${productTitle} 新增購物車成功`
+              title: `${productTitle}`,
+              actionText: '新增至購物車'
             })
             this.status.loadingItem = ''
             this.updateNavCartLength()
@@ -143,9 +144,14 @@ export default {
       this.delTitle = productTitle
       this.openDelModal()
     },
-    removeFavItem () {
+    removeFavItem (title) {
       this.removeFavorite(this.delProductId)
       this.hideDelModal()
+      emitter.emit('push-message', {
+        style: 'success',
+        title: `${title}`,
+        actionText: '取消關注成功'
+      })
     },
     openAlertModal () {
       this.$refs.alertModal.showModal()

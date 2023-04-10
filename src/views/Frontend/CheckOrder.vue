@@ -6,22 +6,26 @@
       boderColor="#F7F1F0"></OrderBanner>
     <div class="checkorder-main container">
       <HomeLoading :isLoading="isLoading"></HomeLoading>
-      <div class="back-button">
-        <router-link to="/home/Shoppingcart">
-          <i class="bi bi-arrow-left"></i>
-          回購物車
-        </router-link>
-      </div>
       <div class="row gx-5">
-        <div class="col-12 col-md-12 col-lg-5">
+        <div class="col-12 top-btns">
+          <div class="back-button">
+            <button @click="backBtn">
+              <i class="bi bi-arrow-left"></i>
+              回購物車
+            </button>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-5 mb-4">
+          <OrderForm @createOrderHandler="createOrder"></OrderForm>
+        </div>
+        <div class="col-12 col-md-12 col-lg-7">
           <OrderLists :cartLists="cartLists"
             :total="total"
             :finalTotal="finalTotal"
+            :hasCouponCode="hasCouponCode"
+            :couponCode="couponCode"
             @setCouponHandler="setCoupon">
           </OrderLists>
-        </div>
-        <div class="col-12 col-md-12 col-lg-7">
-          <OrderForm @createOrderHandler="createOrder"></OrderForm>
         </div>
       </div>
     </div>
@@ -31,6 +35,7 @@
 import OrderBanner from '@/components/Frontend/Content/ImgBanner.vue'
 import OrderLists from '@/components/Frontend/CheckOrder/OrderLists.vue'
 import OrderForm from '@/components/Frontend/CheckOrder/OrderForm.vue'
+import emitter from '@/methods/emitter'
 export default {
   components: { OrderBanner, OrderLists, OrderForm },
   data () {
@@ -39,6 +44,7 @@ export default {
       cartLists: [],
       total: 0,
       finalTotal: 0,
+      hasCouponCode: false,
       couponCode: ''
     }
   },
@@ -56,6 +62,7 @@ export default {
             }
             this.getPrice()
           }
+          this.checkCouponCode()
         })
     },
     getPrice () {
@@ -69,6 +76,7 @@ export default {
       this.finalTotal = finalTotal
     },
     setCoupon (couponCode) {
+      console.log(couponCode)
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
       const payload = {
         data: {
@@ -77,6 +85,17 @@ export default {
       }
       this.$http.post(api, payload)
         .then(res => {
+          if (res.data.success) {
+            emitter.emit('push-message', {
+              style: 'success',
+              title: `${res.data.message}`
+            })
+          } else {
+            emitter.emit('push-message', {
+              style: 'danger',
+              title: `${res.data.message}`
+            })
+          }
           this.getCart()
         })
     },
@@ -89,6 +108,13 @@ export default {
             this.$router.replace(`checkout/${orderID}`)
           }
         })
+    },
+    checkCouponCode () {
+      this.hasCouponCode = !!this.cartLists[0].coupon
+      if (this.hasCouponCode) this.couponCode = this.cartLists[0].coupon.code
+    },
+    backBtn () {
+      this.$router.push('/shoppingCart')
     }
   },
   created () {
@@ -100,17 +126,31 @@ export default {
 .checkorder-main {
   margin-top: 20px;
 
+  .top-btns {
+    padding: 10px;
+  }
+
   .back-button {
     font-size: 24px;
-    font-weight: 900;
-    margin-bottom: 10px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 5px 15px;
 
-    a {
+    button {
+      padding: 10px;
+      background-color: white;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      ;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
       color: black;
-      text-decoration: none;
     }
   }
 
+  .back-button a:hover {
+    color: white;
+    background-color: #333;
+  }
 }
 
 @media (max-width: 991px) {
