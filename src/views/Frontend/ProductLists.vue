@@ -7,6 +7,22 @@
       fontColor="#F7F1F0"
       boderColor="#F7F1F0"></CartBanner>
     <div class="container-xl">
+      <div class="row">
+        <div class="col-12 col-md-4 offset-md-8 ml-2">
+          <div class="search-wrap">
+            <div class="input-group">
+              <span class="input-group-text"
+                id="basic-addon1"><i class="bi bi-search"></i></span>
+              <input type="text"
+                v-model="search"
+                class="form-control"
+                placeholder="請輸入關鍵字..."
+                aria-label="search"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row main">
         <sidebar :sidebarList="sidebarList"
           :sidebarTarget="sidebarTarget"
@@ -18,7 +34,8 @@
           @setFavoriteHandler="setFavorite"
           @removeFavoriteHandler="removeFavItemButton"
           :FavoriteItems="FavoriteItems"
-          @openAlertModalHandler="openAlertModal">
+          @openAlertModalHandler="openAlertModal"
+          :searchTitle="search">
         </ProductsItems>
       </div>
     </div>
@@ -54,14 +71,19 @@ export default {
       pagination: {},
       status: {
         loadingItem: '' // 對應品項ID
-      }
+      },
+      search: ''
     }
   },
   computed: {
     productsFilter () {
-      return this.products.filter(item => {
+      let result = this.products.filter(item => {
         return this.sidebarTarget === '全部商品' ? item : item.category === this.sidebarTarget
       })
+      if (this.search !== '') {
+        result = result.filter((item) => item.title.match(this.search))
+      }
+      return result
     }
   },
   methods: {
@@ -162,4 +184,25 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main {
+  min-height: 500px;
+}
+.search-wrap {
+  margin-right: 12px;
+  .input-group {
+    border: 1px solid #000;
+    border-radius: 5px;
+    span {
+      background-color: inherit;
+      border: none
+    }
+    input {
+      background-color: inherit;
+      border: none;
+      border-left: 1px solid #000;
+      font-size: 18px;
+    }
+  }
+}
+</style>

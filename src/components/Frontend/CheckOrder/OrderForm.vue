@@ -109,9 +109,9 @@ export default {
     padding-bottom: 10px;
 
     .form-title {
-      font-weight: 900;
+      font-weight: bold;
       padding: 30px 0px;
-      border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+      border-bottom: 2px solid rgba(0, 0, 0, 0.25);
       margin-bottom: 5px;
       text-align: center;
     }
@@ -142,6 +142,7 @@ export default {
           }
           .submit-btn:disabled {
             background-color: gray;
+            cursor: not-allowed;
           }
         }
       }

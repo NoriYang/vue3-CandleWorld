@@ -22,7 +22,7 @@ import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 // ----------------------------------------
 
-import { currency, date } from '@/methods/filters'
+import { currency, date, localeDateStr, localeTimeStr } from '@/methods/filters'
 import $httpMessageState from '@/methods/pushMessageState'
 
 const app = createApp(App)
@@ -46,7 +46,9 @@ app.component('ErrorMessage', ErrorMessage)
 
 app.config.globalProperties.$filters = {
   currency,
-  date
+  date,
+  localeDateStr,
+  localeTimeStr
 }
 app.config.globalProperties.$httpMessageState = $httpMessageState
 app.component('Loading', Loading)

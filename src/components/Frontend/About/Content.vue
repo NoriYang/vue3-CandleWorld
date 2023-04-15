@@ -62,8 +62,8 @@
         <div class="bottom-title">
           <h2>實體店面位置</h2>
         </div>
-        <div class="row">
-          <div class="col-12 col-md-12 location-wrap">
+        <div class="row main-info">
+          <div class="col-12 col-md-6 location-wrap">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d903.7581802931063!2d121.56423589919741!3d25.032963599999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abe10238cb87%3A0x8c0ca929f18c0d23!2z5Y-w5YyXMTAx!5e0!3m2!1szh-TW!2stw!4v1680172152264!5m2!1szh-TW!2stw"
               height="400"
@@ -71,6 +71,22 @@
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="col-12 col-md-6 traffic-information-wrap">
+            <h3>搭乘捷運</h3>
+            <ul>
+              <li>信義線：台北101站 4 號出口</li>
+              <li>板南線：市政府站 2 號出口步行約 10 分鐘</li>
+            </ul>
+            <h3>搭乘公車</h3>
+            <ul>
+              <li>搭乘至市府站、世貿站、信義行政中心、君悅飯店路線之公車，均可到達台北101停車站下車。</li>
+            </ul>
+            <h3>自行開車</h3>
+            <ul>
+              <li>中山高北上建國高架橋信義路出口下<br />
+                左轉信義路 → 左轉基隆路 → 右轉松壽路。</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -85,6 +101,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/helpers/main.scss";
+
 .shadow-box {
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.25);
 }
@@ -189,7 +207,7 @@ export default {
   margin-top: 30px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px;
 
   .bottom-title {
     display: flex;
@@ -200,16 +218,34 @@ export default {
       font-size: 2.5rem;
       font-weight: bold;
       margin-bottom: 15px;
-      padding: 0px 15px 10px 15px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      padding: 0px 15px 30px 15px;
     }
   }
 
   .location-wrap {
-    margin-top: 20px;
-
     iframe {
       width: 100%;
+    }
+  }
+
+  .traffic-information-wrap {
+    padding: 10px;
+    h3 {
+        font-weight: bold;
+        color: $second-bgc;
+        padding: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        display: inline-block;
+        margin-bottom: 15px;
+      }
+    ul {
+      padding-left: 20px;
+      li {
+        font-size: 18px;
+        letter-spacing: 2px;
+        text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.15);
+      }
     }
   }
 }

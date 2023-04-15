@@ -52,7 +52,7 @@
           v-model="InputcouponCode"
           placeholder="請輸入折扣碼"
           :disabled="hasCouponCode">
-        <button @click="setCoupon"
+        <button class="setcoupon-btn" @click="setCoupon"
           :disabled="InputcouponCode === '' || hasCouponCode">套用</button>
       </div>
     </div>
@@ -96,6 +96,7 @@ export default {
 </script>
 <style lang="scss">
 .order-lists-wrap {
+
   .order-lists {
     background-color: #fff;
     border-radius: 5px;
@@ -104,7 +105,7 @@ export default {
     text-align: center;
     min-height: 536px;
     .table-title {
-      font-weight: 900;
+      font-weight: bold;
       padding: 30px 0px;
       border-bottom: 2px solid rgba(0, 0, 0, 0.25);
       margin-bottom: 5px;
@@ -220,6 +221,7 @@ export default {
 
         &:disabled {
           background-color: gray;
+          cursor: not-allowed;
         }
       }
     }

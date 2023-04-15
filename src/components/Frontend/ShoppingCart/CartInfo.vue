@@ -26,7 +26,6 @@
       <p class="cart-info-text">- 下單前請確認商品尺寸顏色及數量（不予以取消/修改）。</p>
       <p class="cart-info-text">- 下單後請於三天內付款，未付款則取消訂單。</p>
       <p class="cart-info-text">- 下單後（不含訂購當天）現貨商品約3 - 5工作天寄出商品，配送天數約3 - 5天，節慶假日物流量較多則可能延遲。</p>
-      <p class="cart-info-text">- 瑕疵更換請於三天內寄回（超過期限恕不接受退換服務）。</p>
     </div>
   </div>
 </template>
@@ -113,6 +112,7 @@ export default {
 
     .buy-btn:disabled {
       background-color: gray;
+      cursor: not-allowed;
     }
 
     .main-buttons {
@@ -138,9 +138,13 @@ export default {
   background-color: #d15662;
   color: #eee;
 }
-
+.clean-btn:hover.clean-btn:disabled {
+  background-color: inherit;
+  color: gray;
+}
 .clean-btn:disabled {
   border: 1px solid gray;
-  color: gray
+  color: gray;
+  cursor: not-allowed;
 }
 </style>

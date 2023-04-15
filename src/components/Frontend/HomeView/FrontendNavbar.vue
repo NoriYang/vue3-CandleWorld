@@ -175,7 +175,6 @@ export default {
 
 .header {
   transition: background-color 0.5s;
-
   &.deepColor {
     background-color: $second-bgc;
   }
@@ -215,7 +214,7 @@ export default {
 }
 
 .desktop {
-  background-color: rgba($second-bgc, 0.5);
+  background-color: rgba($second-bgc, 0.8);
 
   .center-menu-ul {
     gap: 2rem;

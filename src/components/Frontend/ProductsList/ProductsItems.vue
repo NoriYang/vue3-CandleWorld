@@ -1,11 +1,16 @@
 <template>
-  <div class="products-items col-md-9 col-lg-10">
+  <div v-if="products.length !== 0"
+    class="products-items col-md-9 col-lg-10">
     <div class="container">
       <div class="row mt-4 gx-3">
-        <div class="card col-sm-6 col-md-6 col-lg-3" v-for="product of products" :key="product.id">
+        <div class="card col-sm-6 col-md-6 col-lg-3"
+          v-for="product of products"
+          :key="product.id">
           <div class="card-item">
-            <div class="card-item-img" :style="{ backgroundImage: `url(${product.imageUrl})` }">
-              <div class="enter-item" @click="getProduct(product.id)">
+            <div class="card-item-img"
+              :style="{ backgroundImage: `url(${product.imageUrl})` }">
+              <div class="enter-item"
+                @click="getProduct(product.id)">
                 <i class="bi bi-hand-index-thumb-fill"></i>
               </div>
             </div>
@@ -17,25 +22,40 @@
                   <span class="origin-price">${{ $filters.currency(product.origin_price) }}</span>
                   <span class="price">${{ $filters.currency(product.price) }}</span>
                 </div>
+
                 <div class="button-lists">
-                  <button v-if="isFavoriteItems(product.id) === -1" class="btn" @click="setFavorite(product.id)">
+                  <button v-if="isFavoriteItems(product.id) === -1"
+                    class="btn fav-btn"
+                    @click="setFavorite(product.id)">
                     <i class="bi bi-bookmark"></i>
                   </button>
-                  <button v-else class="btn" @click="removeFavorite(product.id, product.title)">
+                  <button v-else
+                    class="btn fav-btn"
+                    @click="removeFavorite(product.id, product.title)">
                     <i class="bi bi-bookmark-fill"></i>
                   </button>
-                  <button class="btn" @click="addToCart(product.id, product.title)"
+                  <button class="btn cart-btn"
+                    @click="addToCart(product.id, product.title)"
                     :disabled="loadingItem === product.id">
-                    <i v-if="loadingItem !== product.id" class="bi bi-cart3"></i>
-                    <span v-else class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <i v-if="loadingItem !== product.id"
+                      class="bi bi-cart3"></i>
+                    <span v-else
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"></span>
                   </button>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div v-else
+    class="col-md-9 col-lg-10 empty">
+    <h2>搜尋不到<span>{{ searchTitle }}</span>的商品，請重新查詢！</h2>
   </div>
 </template>
 
@@ -57,6 +77,9 @@ export default {
     },
     FavoriteItems: {
       type: Array
+    },
+    searchTitle: {
+      type: String
     }
   },
   methods: {
@@ -83,6 +106,20 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: bold;
+    color: $second-bgc;
+    text-decoration: underline;
+  }
+}
 
 .products-items {
   padding-top: 0px;
@@ -159,7 +196,6 @@ export default {
   .card-title {
     font-size: 18px;
     text-align: center;
-
   }
 
   .card-title:nth-child(1) {
@@ -211,16 +247,18 @@ export default {
         font-size: 16px;
       }
 
-      button:hover {}
-
-      button:nth-child(1) {
+      .fav-btn {
         color: $third-bgc;
         border: 1px solid $third-bgc;
       }
-
-      button:nth-child(2) {
+      .cart-btn {
         background-color: $third-bgc;
         color: $main-bgc;
+      }
+      .cart-btn:hover {
+        background-color: $main-bgc;
+        color: $third-bgc;
+        border: 1px solid $third-bgc;
       }
     }
   }

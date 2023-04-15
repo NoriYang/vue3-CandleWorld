@@ -105,6 +105,7 @@ export default {
         .then(res => {
           if (res.data.success) {
             const orderID = res.data.orderId
+            emitter.emit('updateCartLength')
             this.$router.replace(`checkout/${orderID}`)
           }
         })
@@ -123,6 +124,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/helpers/main.scss";
 .checkorder-main {
   margin-top: 20px;
 
@@ -140,10 +142,14 @@ export default {
       padding: 10px;
       background-color: white;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      ;
       box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: black;
+    }
+    button:hover{
+      background-color: $second-bgc;
+      color: white;
+      transition: 0.2s;
     }
   }
 

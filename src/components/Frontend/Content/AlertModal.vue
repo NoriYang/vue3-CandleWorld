@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="modal fade" ref="modal" id="AlertModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade"
+      ref="modal"
+      id="AlertModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered alert-modal">
         <div class="modal-content">
@@ -8,10 +12,12 @@
             <div class="circle">
               <div class="line"></div>
             </div>
-            <h2 class="mt-3">成功新增到我的最愛</h2>
+            <h2 class="mt-3">{{ title }}</h2>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">確認</button>
+            <button type="button"
+              class="btn submit-btn"
+              data-bs-dismiss="modal">確認</button>
           </div>
         </div>
       </div>
@@ -21,7 +27,13 @@
 <script>
 import modalMixin from '@/mixins/modalMixin.js'
 export default {
-  mixins: [modalMixin]
+  mixins: [modalMixin],
+  props: {
+    title: {
+      type: String,
+      default: '成功新增到我的最愛'
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -72,5 +84,13 @@ export default {
   top: 45%;
   left: 35%;
   transform: rotate(-55deg);
+}
+.submit-btn {
+  color: #5ecc2e;
+  border: 1px solid #5ecc2e;
+}
+.submit-btn:hover {
+  color: white;
+  background-color: #5ecc2e;
 }
 </style>

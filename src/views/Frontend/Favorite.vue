@@ -8,7 +8,7 @@
     <HomeLoading :isLoading="isLoading"></HomeLoading>
     <div class="container main-favorite">
       <div class="favorite-top-buttons">
-        <div class="back-button">
+        <div class="back-button btn">
           <router-link to="/productslist/lists">
             <i class="bi bi-arrow-left"></i>
             商品列表
@@ -124,6 +124,8 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "@/assets/helpers/main.scss";
+
 .main-favorite {
   min-height: 500px;
 }
@@ -132,16 +134,30 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0;
 
   .back-button {
     font-size: 24px;
     font-weight: 400;
-    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
 
     a {
       color: black;
       text-decoration: none;
     }
   }
-}
-</style>
+
+  .clean-button {
+    margin: 0;
+    padding: 10px;
+  }
+
+  .back-button:hover {
+    background-color: $second-bgc;
+    a {
+      color: white;
+    }
+  }
+
+}</style>

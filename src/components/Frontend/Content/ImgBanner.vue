@@ -55,7 +55,7 @@ export default {
     font-weight: 700;
     border-bottom: 5px double $main-bgc;
     margin-top: 50px;
-    text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.8);
   }
 }
 </style>

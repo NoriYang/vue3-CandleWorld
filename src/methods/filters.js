@@ -7,3 +7,12 @@ export function date (time) {
   const localDate = new Date(time * 1000)
   return localDate.toLocaleDateString()
 }
+export function localeDateStr (time, timezone = 'zh-TW') {
+  const localDate = new Date(time * 1000)
+  return localDate.toLocaleDateString(timezone)
+}
+
+export function localeTimeStr (time, timezone = 'zh-TW') {
+  const localDate = new Date(time * 1000)
+  return localDate.toLocaleTimeString(timezone)
+}
