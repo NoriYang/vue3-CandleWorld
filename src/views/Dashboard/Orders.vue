@@ -51,7 +51,6 @@
 </template>
 
 <script>
-
 import DelModal from '@/components/Dashboard/DelModal.vue'
 import OrderModal from '@/components/Dashboard/OrderModal.vue'
 import Pagination from '@/components/Content/Pagination.vue'

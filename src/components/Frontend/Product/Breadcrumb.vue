@@ -18,6 +18,7 @@
     </ol>
   </nav>
 </template>
+
 <script>
 export default {
   props: {
@@ -37,6 +38,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
 @import "@/assets/helpers/main.scss";
 

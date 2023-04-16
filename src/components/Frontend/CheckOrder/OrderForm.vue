@@ -77,6 +77,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data () {
@@ -107,7 +108,8 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+
+<style lang="scss" scoped>
 .order-form-wrap {
   .order-forms {
     background-color: #fff;

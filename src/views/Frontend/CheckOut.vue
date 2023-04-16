@@ -24,6 +24,7 @@
       :title="'成功付款'"></AlertModal>
   </div>
 </template>
+
 <script>
 import OrderBanner from '@/components/Frontend/Content/ImgBanner.vue'
 import AlertModal from '@/components/Frontend/Content/AlertModal.vue'
@@ -80,6 +81,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .empty-wrap {
   min-height: 350px;

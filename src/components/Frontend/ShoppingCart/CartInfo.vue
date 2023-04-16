@@ -29,8 +29,8 @@
     </div>
   </div>
 </template>
-<script>
 
+<script>
 export default {
   props: {
     total: {
@@ -58,6 +58,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
 

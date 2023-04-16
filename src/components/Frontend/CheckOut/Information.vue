@@ -92,8 +92,8 @@
     </div>
   </div>
 </template>
-<script>
 
+<script>
 export default {
   props: {
     order: {
@@ -124,6 +124,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 * {
   box-sizing: border-box;

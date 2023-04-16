@@ -6,7 +6,6 @@
 
 <script>
 import Toast from '@/components/Dashboard/Toast.vue'
-
 export default {
   components: { Toast },
   inject: ['emitter'],

@@ -30,8 +30,8 @@
       @removeFavItemHandler="removeFavItem(delTitle)"></delModal>
   </div>
 </template>
-<script>
 
+<script>
 import delModal from '@/components/Frontend/Favorite/delModal.vue'
 import FavoriteBanner from '@/components/Frontend/Content/ImgBanner.vue'
 import FavoriteItems from '@/components/Frontend/Favorite/FavoriteItems.vue'
@@ -123,6 +123,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
 @import "@/assets/helpers/main.scss";
 

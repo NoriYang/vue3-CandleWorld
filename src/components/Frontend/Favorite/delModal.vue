@@ -52,4 +52,3 @@ export default {
   mixins: [modalMixin]
 }
 </script>
-<style lang="scss"></style>

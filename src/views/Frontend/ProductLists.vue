@@ -184,19 +184,24 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .main {
   min-height: 500px;
 }
+
 .search-wrap {
   margin-right: 12px;
+
   .input-group {
     border: 1px solid #000;
     border-radius: 5px;
+
     span {
       background-color: inherit;
       border: none
     }
+
     input {
       background-color: inherit;
       border: none;
@@ -204,5 +209,4 @@ export default {
       font-size: 18px;
     }
   }
-}
-</style>
+}</style>

@@ -60,7 +60,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     sidebarTarget: {
@@ -104,6 +103,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
 

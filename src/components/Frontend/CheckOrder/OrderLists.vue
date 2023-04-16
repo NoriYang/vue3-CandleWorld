@@ -58,6 +58,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -94,9 +95,9 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-.order-lists-wrap {
 
+<style lang="scss" scoped>
+.order-lists-wrap {
   .order-lists {
     background-color: #fff;
     border-radius: 5px;

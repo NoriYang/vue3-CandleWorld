@@ -13,10 +13,14 @@
       </thead>
       <tbody>
         <slot v-if="cartLists.length > 0">
-          <tr v-for="list of cartLists" :key="list.id" class="product-list">
+          <tr v-for="list of cartLists"
+            :key="list.id"
+            class="product-list">
             <td class="list-img">
               <div class="img-wrap">
-                <img class="img" :src="list.product.imageUrl" alt="商品圖片">
+                <img class="img"
+                  :src="list.product.imageUrl"
+                  alt="商品圖片">
               </div>
             </td>
             <td class="list-title">
@@ -29,13 +33,16 @@
 
             <td class="list-qty-buttons">
               <div class="btn-wrap">
-                <button class="btn qty-btn" @click="updateCart(list, -1)" :disabled="list.qty === 1">
+                <button class="btn qty-btn"
+                  @click="updateCart(list, -1)"
+                  :disabled="list.qty === 1">
                   <i class="bi bi-dash"></i>
                 </button>
                 <span class="list-qty-text">
                   {{ list.qty }}
                 </span>
-                <button class="btn qty-btn" @click="updateCart(list, 1)">
+                <button class="btn qty-btn"
+                  @click="updateCart(list, 1)">
                   <i class="bi bi-plus"></i>
                 </button>
               </div>
@@ -45,7 +52,8 @@
               {{ $filters.currency(list.total) }}
             </td>
             <td class="list-del-btn">
-              <button class="btn del-btn" @click="delList(list.id, list.product.title)">
+              <button class="btn del-btn"
+                @click="delList(list.id, list.product.title)">
                 <i class="bi bi-trash"></i>
               </button>
             </td>
@@ -53,7 +61,8 @@
         </slot>
         <slot v-else>
           <tr>
-            <td colspan="6" class="Empty-cart">
+            <td colspan="6"
+              class="Empty-cart">
               <h2>購物車內無選購商品</h2>
               <span>請前往<router-link to="/productslist/lists">商品列表</router-link></span>
             </td>
@@ -63,6 +72,7 @@
     </table>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -82,10 +92,12 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .main-table {
   min-height: 250px;
 }
+
 td,
 tr {
   text-align: center;
@@ -225,4 +237,5 @@ tr {
   .product-list {
     font-size: 14px;
   }
-}</style>
+}
+</style>

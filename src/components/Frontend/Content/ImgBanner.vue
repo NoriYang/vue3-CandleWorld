@@ -3,6 +3,7 @@
     <h2 :style="boderStyle">{{ title }}</h2>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -35,6 +36,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
 

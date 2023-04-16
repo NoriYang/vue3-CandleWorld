@@ -24,6 +24,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import modalMixin from '@/mixins/modalMixin.js'
 export default {
@@ -36,6 +37,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .modal-body {
   height: 300px;

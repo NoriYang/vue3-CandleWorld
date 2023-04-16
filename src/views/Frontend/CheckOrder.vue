@@ -31,6 +31,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import OrderBanner from '@/components/Frontend/Content/ImgBanner.vue'
 import OrderLists from '@/components/Frontend/CheckOrder/OrderLists.vue'
@@ -123,6 +124,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
 .checkorder-main {

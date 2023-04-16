@@ -28,6 +28,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
 .body {
   background-color: #222222;

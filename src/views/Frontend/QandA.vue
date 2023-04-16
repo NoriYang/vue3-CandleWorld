@@ -166,14 +166,17 @@
     </div>
   </div>
 </template>
+
 <script>
 import QandABanner from '@/components/Frontend/Content/ImgBanner.vue'
 export default {
   components: { QandABanner }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
+
 .qanda-main {
   min-height: 400px;
   display: flex;
@@ -187,10 +190,12 @@ export default {
       font-size: 1.2rem;
       letter-spacing: 2px;
     }
+
     .accordion-button:not(.collapsed) {
       color: #eee;
       background-color: $second-bgc;
     }
+
     .accordion-button:focus {
       box-shadow: none;
     }
@@ -201,5 +206,4 @@ export default {
     font-size: 1.1rem;
     letter-spacing: 2px;
   }
-}
-</style>
+}</style>

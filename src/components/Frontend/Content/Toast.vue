@@ -30,7 +30,6 @@
 
 <script>
 import Toast from 'bootstrap/js/dist/toast'
-
 export default {
   name: 'Toast',
   props: [
@@ -45,6 +44,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 * {
   color: #eee;

@@ -24,6 +24,7 @@
       @removeFavItemHandler="removeFavItem"></delModal>
   </div>
 </template>
+
 <script>
 import AlertModal from '@/components/Frontend/Content/AlertModal.vue'
 import delModal from '@/components/Frontend/Favorite/delModal.vue'
@@ -116,6 +117,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
 

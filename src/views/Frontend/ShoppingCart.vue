@@ -35,6 +35,7 @@
 
   </div>
 </template>
+
 <script>
 import Cartlists from '@/components/Frontend/ShoppingCart/CartLists.vue'
 import CartListsMobile from '@/components/Frontend/ShoppingCart/CartListsMobile.vue'
@@ -165,6 +166,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .lists-mobile {
   display: none;

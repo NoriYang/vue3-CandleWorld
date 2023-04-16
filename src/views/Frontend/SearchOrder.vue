@@ -36,6 +36,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import OrderBanner from '@/components/Frontend/Content/ImgBanner.vue'
 export default {
@@ -52,6 +53,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .main-serch-order {
   min-height: 300px;

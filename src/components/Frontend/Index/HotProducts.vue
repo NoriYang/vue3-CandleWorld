@@ -60,6 +60,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .hot-products {
   margin-top: 50px;
@@ -127,6 +128,7 @@ export default {
     .item-img {
       transform: scale(1.1);
     }
+
     &.product-item::before {
       display: none;
     }
@@ -139,4 +141,5 @@ export default {
   //   background-color: red;
   //   height: 150px;
   // }
-}</style>
+}
+</style>

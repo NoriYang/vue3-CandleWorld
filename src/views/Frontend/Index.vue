@@ -7,6 +7,7 @@
 
   </div>
 </template>
+
 <script>
 import IndexCarousel from '@/components/Frontend/Index/IndexCarousel.vue'
 import Intro from '@/components/Frontend/Index/Intro.vue'
@@ -16,4 +17,5 @@ export default {
   components: { IndexCarousel, Intro, HotProducts, Subscribe }
 }
 </script>
+
 <style lang="scss"></style>

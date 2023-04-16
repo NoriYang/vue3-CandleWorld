@@ -6,7 +6,6 @@
 
 <script>
 import Toast from '@/components/Frontend/Content/Toast.vue'
-
 export default {
   components: { Toast },
   inject: ['emitter'],
@@ -23,6 +22,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .toast-main {
   position: fixed;

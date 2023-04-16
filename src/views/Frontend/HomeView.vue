@@ -4,6 +4,7 @@
   <FrontendFooter></FrontendFooter>
   <ToastMessage></ToastMessage>
 </template>
+
 <script>
 import FrontendNavbar from '@/components/Frontend/HomeView/FrontendNavbar.vue'
 import FrontendFooter from '@/components/Frontend/HomeView/FrontendFooter.vue'
@@ -18,4 +19,5 @@ export default {
   }
 }
 </script>
+
 <style lang="scss"></style>
