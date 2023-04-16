@@ -197,7 +197,6 @@ export default {
         padding: 0;
         margin: 0;
         margin-top: 10px;
-
         .item-title {
           width: 25%;
           margin: 0;
@@ -216,7 +215,6 @@ export default {
     .lists-ul {
       padding-bottom: 25px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-
       .list-item {
         display: flex;
         padding: 0;
@@ -240,7 +238,7 @@ export default {
       display: flex;
       padding: 0;
       margin: 0;
-
+      letter-spacing: 1px;
       h4 {
         font-size: 1rem;
         width: 80%;

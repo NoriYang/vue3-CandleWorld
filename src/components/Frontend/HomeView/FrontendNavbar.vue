@@ -175,6 +175,7 @@ export default {
 
 .header {
   transition: background-color 0.5s;
+
   &.deepColor {
     background-color: $second-bgc;
   }
@@ -195,9 +196,11 @@ export default {
     font-size: 1.5rem;
     color: #F7F1F0;
   }
+
   .cart-length-i {
     position: relative;
   }
+
   .cart-length {
     background-color: red;
     font-size: 14px;
@@ -222,6 +225,7 @@ export default {
     letter-spacing: 2px;
 
     .nav-item {
+
       .nav-link {
         padding-left: 20px;
         padding-right: 20px;
@@ -324,5 +328,4 @@ export default {
   .mobile {
     display: flex;
   }
-}
-</style>
+}</style>
