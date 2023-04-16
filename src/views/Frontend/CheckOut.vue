@@ -9,6 +9,7 @@
       v-if="hasOrder">
       <Information :order="order"
         @payOrderHandler="payOrder"></Information>
+      <Recommend></Recommend>
     </div>
     <div class="container-xl main-checkout"
       v-else>
@@ -26,10 +27,11 @@
 </template>
 <script>
 import OrderBanner from '@/components/Frontend/Content/ImgBanner.vue'
-import Information from '@/components/Frontend/CheckOut/Information.vue'
 import AlertModal from '@/components/Frontend/Content/AlertModal.vue'
+import Information from '@/components/Frontend/CheckOut/Information.vue'
+import Recommend from '@/components/Frontend/CheckOut/Recommend.vue'
 export default {
-  components: { OrderBanner, Information, AlertModal },
+  components: { OrderBanner, Information, AlertModal, Recommend },
   data () {
     return {
       order: {

@@ -7,57 +7,65 @@
           ref="orderForm"
           v-slot="{ meta, errors }"
           @submit="createOrder">
-          <div class="input-wrap">
+          <div class="input-wrap form-floating">
             <VField v-model="form.user.name"
               name="姓名"
               type="text"
               rules="required"
               class="form-control"
-              placeholder="收件人 姓名"
+              placeholder="姓名"
+              id="floatingInputOne"
               :class="{ 'is-invalid': errors['姓名'] }">
             </VField>
+            <label for="floatingInputOne">姓名</label>
             <ErrorMessage class="invalid-feedback"
               name="姓名" />
           </div>
-          <div class="input-wrap">
+          <div class="input-wrap form-floating">
             <VField v-model="form.user.email"
               name="email"
               type="email"
               rules="required|email"
               class="form-control"
+              id="floatingInputTwo"
               :class="{ 'is-invalid': errors['email'] }"
-              placeholder="收件人 信箱" />
+              placeholder="信箱" />
+            <label for="floatingInputTwo">信箱</label>
             <ErrorMessage class="invalid-feedback"
               name="email" />
-            <!-- error-message 的 name 要跟 VField 的 name 對應 -->
           </div>
-          <div class="input-wrap">
+          <div class="input-wrap form-floating">
             <VField v-model="form.user.tel"
               name="phone"
               type="text"
               :rules="isPhone"
               class="form-control"
-              placeholder="收件人 手機號碼"
+              id="floatingInputThree"
+              placeholder="聯絡電話"
               :class="{ 'is-invalid': errors['phone'] }"></VField>
+            <label for="floatingInputThree">聯絡電話</label>
             <ErrorMessage class="invalid-feedback"
               name="phone" />
           </div>
-          <div class="input-wrap">
+          <div class="input-wrap form-floating">
             <VField v-model="form.user.address"
               name="地址"
               type="text"
               rules="required"
               class="form-control"
-              placeholder="收件人 地址"
+              placeholder="收件地址"
+              id="floatingInputFour"
               :class="{ 'is-invalid': errors['地址'] }"></VField>
+            <label for="floatingInputFour">收件地址</label>
             <ErrorMessage class="invalid-feedback"
               name="地址" />
           </div>
-          <div class="input-wrap">
+          <div class="input-wrap form-floating">
             <textarea placeholder="商品備註"
               v-model="form.message"
               class="form-control"
               id="form-message"></textarea>
+            <label for="form-message">商品備註</label>
           </div>
           <div class="buttons-wrap d-grid gap-2">
             <button type="submit"
@@ -118,19 +126,23 @@ export default {
 
     .order-form {
       padding: 10px 20px;
+
       .order-form-main {
         .input-wrap {
           margin-bottom: 10px;
+
           .form-control {
             font-size: 18px;
             border-radius: 0px;
-            padding: 10px;
+
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
           }
         }
+
         .buttons-wrap {
           margin-top: 20px;
           margin-bottom: 5px;
+
           .submit-btn {
             padding: 10px;
             font-size: 18px;
@@ -140,6 +152,7 @@ export default {
             color: #fff;
             border-radius: 5px;
           }
+
           .submit-btn:disabled {
             background-color: gray;
             cursor: not-allowed;
