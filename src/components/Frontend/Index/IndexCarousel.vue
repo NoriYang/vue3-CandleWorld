@@ -3,20 +3,9 @@
     class="carousel slide"
     data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button"
-        data-bs-target="#carouselExampleInterval"
-        data-bs-slide-to="0"
-        class="active"
-        aria-current="true"
-        aria-label="Slide 1"></button>
-      <button type="button"
-        data-bs-target="#carouselExampleInterval"
-        data-bs-slide-to="1"
-        aria-label="Slide 2"></button>
-      <button type="button"
-        data-bs-target="#carouselExampleInterval"
-        data-bs-slide-to="2"
-        aria-label="Slide 3"></button>
+      <h2 class="hint-icon">
+        <i class="bi bi-caret-down-fill"></i>
+      </h2>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -70,28 +59,40 @@
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-
-    }
-  },
-  methods: {
-
-  },
-  created () {
-
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 .carousel-item img {
   height: 100dvh;
   background-size: cover;
   width: 100%;
   object-fit: cover;
+}
+
+.carousel-indicators {
+  .hint-icon {
+    font-size: 2.5rem;
+    color: white;
+    width: 100%;
+    position: relative;
+    i {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -80%);
+      animation: arrowShake 1s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes arrowShake {
+  0% {
+    transform: translateY(-80%);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(-80%);
+  }
 }
 
 .carousel-caption {
