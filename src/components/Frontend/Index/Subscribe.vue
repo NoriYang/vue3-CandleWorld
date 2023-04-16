@@ -55,6 +55,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data () {
@@ -77,6 +78,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
 @import "@/assets/helpers/main.scss";
 
@@ -336,4 +338,5 @@ export default {
       }
     }
   }
-}</style>
+}
+</style>

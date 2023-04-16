@@ -1,10 +1,9 @@
 <template>
   <div>
-    <IndexCarousel></IndexCarousel>
-    <HotProducts></HotProducts>
-    <Subscribe></Subscribe>
-    <Intro></Intro>
-
+    <IndexCarousel />
+    <HotProducts />
+    <Subscribe />
+    <Intro />
   </div>
 </template>
 

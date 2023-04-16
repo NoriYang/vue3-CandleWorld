@@ -2,11 +2,11 @@
   <div>
     <HomeLoading :isLoading="!check"></HomeLoading>
     <div v-if="check">
-      <Dashboard-Navbar></Dashboard-Navbar>
+      <Dashboard-Navbar />
       <div class="container-fluid">
-        <router-view></router-view>
+        <router-view />
       </div>
-      <ToastMessage></ToastMessage>
+      <ToastMessage />
     </div>
   </div>
 </template>

@@ -26,8 +26,8 @@
     </div>
   </div>
 </template>
-<script>
 
+<script>
 export default {
   data () {
     return {
@@ -99,6 +99,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
 .show-animate {

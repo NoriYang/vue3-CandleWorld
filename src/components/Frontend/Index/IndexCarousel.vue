@@ -69,6 +69,7 @@
 
   </div>
 </template>
+
 <script>
 export default {
   data () {
@@ -84,6 +85,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .carousel-item img {
   height: 100dvh;

@@ -26,7 +26,6 @@
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -70,6 +69,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/helpers/main.scss";
 

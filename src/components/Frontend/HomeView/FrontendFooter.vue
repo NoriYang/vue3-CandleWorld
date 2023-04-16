@@ -19,9 +19,9 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/">
+                <a href="https://github.com/NoriYang/vue3-final-project" target="_blank">
                   <i class="bi bi-github"></i>
-                </router-link>
+                </a>
               </li>
               <li>
                 <router-link to="/dashboard/products">
