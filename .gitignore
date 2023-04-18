@@ -3,6 +3,7 @@ node_modules
 note.js
 
 # local env files
+.env
 .env.local
 .env.*.local
 

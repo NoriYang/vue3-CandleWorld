@@ -2,7 +2,7 @@
   <div id="carouselExampleInterval"
     class="carousel slide"
     data-bs-ride="carousel">
-    <div class="carousel-indicators">
+    <div class="hint-wrap">
       <h2 class="hint-icon">
         <i class="bi bi-caret-down-fill"></i>
       </h2>
@@ -67,7 +67,14 @@
   object-fit: cover;
 }
 
-.carousel-indicators {
+#carouselExampleInterval{
+  position: relative;
+}
+.hint-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: 1%;
+  z-index: 1;
   .hint-icon {
     font-size: 2.5rem;
     color: white;
