@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/vue3-final-project/dist',
+  publicPath: './',
   chainWebpack: config => {
     config
       .plugin('html')
